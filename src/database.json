@@ -1,0 +1,38 @@
+[
+{
+	"name":"Baxter",
+	"breed": "terrier",
+	"gender": "male",
+	"age": "1",
+	"available": "true",
+	"location": "Cuenca",
+	"notes": "Baxter loves taking walks and running in a dog park.  He loves small children but not very good with cats.",
+	"image": "sampledog1.png",
+	"size": "medium",
+	"id": "1"
+},
+{
+	"name":"Kitty",
+	"breed": "cat",
+	"gender": "female",
+	"age": "5",
+	"available": "true",
+	"location": "Cuenca",
+	"notes": "Kitty loves taking long naps and enjoying tuna treats.  She will watch movies with you and be a good companion.  She is good with small dogs.",
+	"image": "samplecat1.png",
+	"size": "small",
+	"id": "2"
+},
+{
+	"name":"Sam",
+	"breed": "chihuahua",
+	"gender": "male",
+	"age": "6",
+	"available": "true",
+	"location": "Quito",
+	"notes": "Sam is a sweet dog that is very friendly.  He is good with cats but not recommended in a household with small children.",
+	"image": "sampledog2.png",
+	"size": "small",
+	"id": "3"
+}
+]
