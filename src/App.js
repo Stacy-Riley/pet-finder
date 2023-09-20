@@ -26,7 +26,7 @@ function App() {
 }
   return (
     <div>
-      <h1>Look for your pet here!</h1>
+      <h1>Search here for your new pet today</h1>
       <SearchBar onSearch={handleSearch}/>
       {/* Conditionally render the PetCard Component */}
       {showPetCard && <PetCard data={filteredPets} />}

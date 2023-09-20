@@ -4,7 +4,7 @@ function SearchBar( { onSearch }) {
 	const[searchTerm, setSearchTerm] = useState('');
 	const [locationValue, setLocationValue] = useState('')
 
-//Sets the state to be the entered data from the user
+	//Sets the state to be the entered data from the user
 	const handleInputChange = (e) => {
 		setSearchTerm(e.target.value);
 	}
@@ -13,7 +13,6 @@ function SearchBar( { onSearch }) {
 	const handleSearch = () => {
 		onSearch(searchTerm);
 	}
-
 	return (
 	<div className="form-container">
 		<form>
