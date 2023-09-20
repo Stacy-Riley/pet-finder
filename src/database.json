@@ -1,7 +1,7 @@
 [
 {
 	"name":"Baxter",
-	"breed": "terrier",
+	"breed": "terrier, dog",
 	"gender": "male",
 	"age": "1",
 	"available": "true",
@@ -25,7 +25,7 @@
 },
 {
 	"name":"Sam",
-	"breed": "chihuahua",
+	"breed": "chihuahua, dog",
 	"gender": "male",
 	"age": "6",
 	"available": "true",
