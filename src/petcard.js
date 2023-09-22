@@ -15,13 +15,11 @@ function PetCard ({ data }) {
                 height="150"   
               />
               <h2>{pet.name}</h2>
-              {/* 
-              Save for later
               <p>{pet.breed}</p>
               <p>{pet.gender}</p>
               <p>{pet.age}</p>
               <p>{pet.location}</p>
-              <p>{pet.notes}</p> */}
+              <p>{pet.notes}</p>
             </div>
           )
         })}      
