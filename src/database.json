@@ -1,7 +1,8 @@
 [
 {
 	"name":"Baxter",
-	"breed": "terrier, dog",
+	"type": "dog",
+	"breed": "Terrier",
 	"gender": "male",
 	"age": "young",
 	"available": "true",
@@ -14,6 +15,7 @@
 },
 {
 	"name":"Kitty",
+	"type": "cat",
 	"breed": "cat",
 	"gender": "female",
 	"age": "adult",
@@ -27,7 +29,8 @@
 },
 {
 	"name":"Sam",
-	"breed": "chihuahua, dog",
+	"type": "dog",
+	"breed": "Chihuahua",
 	"gender": "male",
 	"age": "senior",
 	"available": "true",
@@ -40,15 +43,30 @@
 },
 {
 	"name":"Dixon",
-	"breed": "shit tzu, dog",
+	"type": "dog",
+	"breed": "Shit Tzu",
 	"gender": "female",
 	"age": "puppy",
 	"available": "true",
 	"location": "Guayaquil",
 	"good with": ["dogs"],
 	"notes": "She loves taking walks. She is not very good with cats.",
-	"image": "sampledog1.png",
+	"image": "sampledog3.jpeg",
 	"size": "small",
 	"id": "4"
+},
+{
+	"name":"Blair",
+	"type": "dog",
+	"breed": "German Shepherd",
+	"gender": "female",
+	"age": "adult",
+	"available": "true",
+	"location": "Guayaquil",
+	"good with": ["dogs","children"],
+	"notes": "She loves taking walks at the dog park.",
+	"image": "sampledog4.jpeg",
+	"size": "large",
+	"id": "5"
 }
 ]
