@@ -9,7 +9,7 @@ function PetCard ({ data }) {
             <div className='pet-card' key={pet.id}>
               <img 
               //images are not displaying
-                src={`./img${pet.image}`} 
+                src={`./pet-finder/img/${pet.image}`} 
                 alt={pet.name}
                 width="200"
                 height="150"   
