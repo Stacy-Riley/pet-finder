@@ -5,6 +5,7 @@ import database from './database.json';
 import PetCard from './petcard.js';
 import SearchBar from './searchbar.js';
 import SearchDog from './searchdog.js';
+import Header from './header.js';
 
 function App() {
   //Create state variables 
@@ -31,7 +32,6 @@ function App() {
 
 //used for searchdog.js
   const handleDogSearch = (filters) => {
-   
   //This takes in the "filters" the user selected in the searchdog.js form
       const filteredResults = database.filter((pet) => {
         //typeMatch makes sure we are only displaying "dog"
@@ -46,11 +46,12 @@ function App() {
 
     setFilteredDogs(filteredResults);
     setShowDogCard(true);
-        }
+  }
 
   return (
     <div>
       <div>
+        <Header/>
         <h1>Search here for your new pet today</h1>
         <SearchBar onSearch={handleSearch}/>
         {/* Conditionally render the PetCard Component */}
