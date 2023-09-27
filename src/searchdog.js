@@ -9,6 +9,16 @@ function SearchDog ( { onClick }){
 	const [selectedSize, selectedSizeSet] = useState('');
 	//add more filter features here
 
+	//resets state of inputs but I don't know how to keep the inputs
+	//the user selected on the form still.
+	const resetForm = () => {
+		selectedAgeSet('');
+		selectedBreedSet('');
+		selectedGenderSet('');
+		selectedSizeSet('');
+	  };
+
+	// Selected dog as type - not to be displayed on screen
 	const selectElementStyle = {
 		display: 'none',
 	}
@@ -20,22 +30,27 @@ function SearchDog ( { onClick }){
 
 		switch (name) {
 			case "selectedAge":
-				selectedAgeSet(value);
+				//if the value === "any", empty the value/reset the value 
+				//to empty string, otherwise set the value of the selected item
+				selectedAgeSet(value === "any" ? "" : value);
 				break;
 			case "selectedBreed":
-				selectedBreedSet(value);
+				selectedBreedSet(value === "any" ? "" : value);
 				break;
 			case "selectedGender":
-				selectedGenderSet(value);
+				selectedGenderSet(value === "any" ? "" : value);
 				break;
 			case "selectedSize":
-				selectedSizeSet(value);
+				selectedSizeSet(value === "any" ? "" : value);
 				break;
 			default:
 				break;
 		}
-	}
-	
+	}  
+
+	//Triggered when the search button is clicked and collects
+	//the selected filter values, creates a 'filters' object and
+	//passes it to the 'onClick' function provided as a prop:
 	const handleDogSearch = () => {
 	// Collect all selected filter values and pass them to the onClick function:
 		const filters = {
@@ -47,7 +62,9 @@ function SearchDog ( { onClick }){
 		  };
 
 		onClick(filters);
-
+	
+	// Reset the form after submitting so it keeps working:
+	resetForm();
 	}
 
 	return (
