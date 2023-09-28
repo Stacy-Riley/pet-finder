@@ -2,7 +2,7 @@
 {
 	"name":"Baxter",
 	"type": "dog",
-	"breed": "Terrier",
+	"breed": "terrier",
 	"gender": "male",
 	"age": "young",
 	"available": "true",
@@ -16,7 +16,7 @@
 {
 	"name":"Kitty",
 	"type": "cat",
-	"breed": "cat",
+	"breed": "short hair",
 	"gender": "female",
 	"age": "adult",
 	"available": "true",
@@ -30,7 +30,7 @@
 {
 	"name":"Sam",
 	"type": "dog",
-	"breed": "Chihuahua",
+	"breed": "chihuahua",
 	"gender": "male",
 	"age": "senior",
 	"available": "true",
@@ -44,7 +44,7 @@
 {
 	"name":"Dixon",
 	"type": "dog",
-	"breed": "Shit Tzu",
+	"breed": "shih tzu",
 	"gender": "female",
 	"age": "puppy",
 	"available": "true",
@@ -58,7 +58,7 @@
 {
 	"name":"Blair",
 	"type": "dog",
-	"breed": "German Shepherd",
+	"breed": "german shepherd",
 	"gender": "female",
 	"age": "adult",
 	"available": "true",
