@@ -19,9 +19,12 @@ function App() {
   const handleSearch = (searchTerm) => {
     //test that it is working
   // console.log('Search Term:', searchTerm);
-    const filtered = database.filter((pet) =>
-    pet.breed.toLowerCase().includes(searchTerm.toLowerCase()) 
-);
+    const filtered = database.filter((pet) => {
+      const breedMatch = searchTerm.toLowerCase() === pet.breed.toLowerCase();
+      const typeMatch = searchTerm.toLowerCase() === pet.type.toLowerCase();
+    //Only return items that match all the above properties:
+      return breedMatch || typeMatch;
+  })
 
   setFilteredPets(filtered);
   setShowPetCard(true);
@@ -36,10 +39,10 @@ function App() {
       const filteredResults = database.filter((pet) => {
         //typeMatch makes sure we are only displaying "dog"
         const typeMatch = filters.type === pet.type;
-        const breedMatch = filters.breed.toLowerCase() === pet.breed.toLowerCase() || filters.breed === '';
-        const ageMatch = filters.age.toLowerCase() === pet.age.toLowerCase() || filters.age === '';
-        const genderMatch = filters.gender.toLowerCase() === pet.gender.toLowerCase() || filters.gender === '';
-        const sizeMatch = filters.size.toLowerCase() === pet.size.toLowerCase() || filters.size === '';
+        const breedMatch = filters.breed === pet.breed || filters.breed === '';
+        const ageMatch = filters.age === pet.age || filters.age === '';
+        const genderMatch = filters.gender === pet.gender || filters.gender === '';
+        const sizeMatch = filters.size === pet.size || filters.size === '';
         //Only return items that match all the above properties:
         return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
         });
@@ -51,17 +54,27 @@ function App() {
   return (
     <div>
       <div>
-        <Header/>
-        <h1>Search here for your new pet today</h1>
-        <SearchBar onSearch={handleSearch}/>
-        {/* Conditionally render the PetCard Component */}
-        {showPetCard && <PetCard data={filteredPets} />}
-      </div>
-      <br/>
-      <br/>
-      <div>
-        <SearchDog onClick={handleDogSearch}/>
-        {showDogCard && <PetCard data={filteredDogs} />}
+        <div className='header-container'>
+          <Header/>
+          <SearchBar onSearch={handleSearch}/>
+          {/* Conditionally render the PetCard Component */}
+          {showPetCard && <PetCard data={filteredPets} />}
+        </div>
+        <div className='card-search-container'>
+          {/* Dog card to click on and search for certain attributes */}
+          <div>
+            <SearchDog onClick={handleDogSearch}/>
+            {showDogCard && <PetCard data={filteredDogs} />}
+          </div>
+          {/* Cat card to click on and search for certain attributes */}
+          <div>
+            
+          </div>
+          {/* Other animal card to click on and search for certain attributes */}
+          <div>
+            
+          </div>
+        </div>
       </div>
     </div>
   );
