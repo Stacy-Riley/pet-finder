@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './header.css';
+import './App.css';
 import Navigation from './navigation.js';
 
 function Header() {
