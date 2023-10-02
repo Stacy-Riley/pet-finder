@@ -6,6 +6,9 @@ import PetCard from './petcard.js';
 import SearchBar from './searchbar.js';
 import SearchDog from './searchdog.js';
 import Header from './header.js';
+import CardForDog from './cardLinkDog';
+import CardForCat from './cardLinkCat';
+import CardForOtherPets from './cardLinkOtherPets';
 
 function App() {
   //Create state variables 
@@ -57,23 +60,29 @@ function App() {
         <div className='header-container'>
           <Header/>
           <SearchBar onSearch={handleSearch}/>
-          {/* Conditionally render the PetCard Component */}
-          {showPetCard && <PetCard data={filteredPets} />}
+            {/* Conditionally render the PetCard Component */}
+            {showPetCard && <PetCard data={filteredPets} />}
         </div>
-        <div className='card-search-container'>
-          {/* Dog card to click on and search for certain attributes */}
-          <div>
+        <div>
             <SearchDog onClick={handleDogSearch}/>
             {showDogCard && <PetCard data={filteredDogs} />}
-          </div>
-          {/* Cat card to click on and search for certain attributes */}
-          <div>
-            
-          </div>
-          {/* Other animal card to click on and search for certain attributes */}
-          <div>
-            
-          </div>
+        </div>
+        <div className='card-search__wrapper'>
+          <div className='card-search__container'>
+            {/* Dog card to click on and search for certain attributes */}
+            {/* <div> */}
+              <CardForDog/>
+            {/* </div> */}
+            {/* Cat card to click on and search for certain attributes */}
+            {/* <div> */}
+              <CardForCat/>
+            {/* </div> */}
+            {/* Other animal card to click on and search for certain attributes */}
+            {/* <div> */}
+              <CardForOtherPets/>
+            {/* </div> */}
+          </div>     
+          
         </div>
       </div>
     </div>
