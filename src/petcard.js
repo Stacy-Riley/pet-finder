@@ -25,11 +25,11 @@ function PetCard ({ data }) {
                   height="150"   
                 />
                 <h2>{pet.name}</h2>
-                <p>{pet.breed}</p>
-                <p>{pet.gender}</p>
-                <p>{pet.age}</p>
-                <p>{pet.location}</p>
-                <p>{pet.notes}</p>
+                <p>Breed: {pet.breed}</p>
+                <p>Gender: {pet.gender}</p>
+                <p>Age: {pet.age}</p>
+                <p>Location: {pet.location}</p>
+                <p>Notes: <br/>{pet.notes}</p>
               </div>
             )
           })}      
