@@ -7,31 +7,38 @@
   box-sizing: border-box;
 }
 
-.animalcard__wrapper {
-	width: 181px;
-	height: 155px;
-}
-
-.animalcard__container {
+.card-search__wrapper {
 	display: flex;
 	justify-content: center;
-	flex-direction: column;
-	padding: 16px;
-	border-radius: 15px;
-	box-shadow: 0 0 10px 1px rgba(119, 119, 122, 0.5);
+}	
+
+.card-search__container {
+	display: flex;
+	justify-content: space-between;
 }
 
-.animalcard__container figure {
+/* Image card styles */
+.card-search__container div {
+	background-color: #fdfafa;
+	border-radius: 15px;
+	box-shadow: 0 0 10px 1px rgba(119, 119, 122, 0.5);
+	width: 181px;
+	height: 155px;
+	padding: 16px;
+	margin: 0 40px;
+}
+
+.card-search__container figure {
 	margin: 0;
 	margin-top: auto;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.animalcard__container p {
-	text-align: center;
+.card-search__container p {
+	font-size: 16px;
 	margin: 0;
 	margin-top: 16px;
 	margin-bottom: 5px;
-	font-size: 16px;
+	text-align: center;
 }
