@@ -5,6 +5,7 @@ import database from './database.json';
 // const srcValue = `./img/${pet.image}`;
 // console.log("srcValue",srcValue);
 
+//Data comes from filteredPets state
 function PetCard ({ data }) {
   
   
