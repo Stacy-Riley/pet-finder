@@ -1,6 +1,7 @@
 //constructor function is uppercase
 import React, { useState } from 'react';
 import './App.css';
+import './cardLink.css';
 import database from './database.json';
 import PetCard from './petcard.js';
 import SearchBar from './searchbar.js';
@@ -10,6 +11,44 @@ import CardForDog from './cardLinkDog';
 import CardForCat from './cardLinkCat';
 import CardForOtherPets from './cardLinkOtherPets';
 
+//Function holds array of image cards, their state, and
+//displays them with the map function:
+function ImageCardDisplay() {
+  const [imageCard, setImageCard] = useState (
+    [{
+      image: 'dog-svgrepo-com.svg',
+      title: 'Dogs',
+      id: '1'
+    },
+    {
+      image: 'cat-svgrepo-com.svg',
+      title: 'Cats',
+      id: '2'
+    },
+    {
+      image: 'paw-2-svgrepo-com.svg',
+      title: 'Other Pets',
+      id: '3'
+    }
+  ])
+  return(
+    <div className='card-search__wrapper' > 
+      <div className='card-search__container'>
+        {imageCard.map(card => (
+          <div key={card.id}>
+              <figure>
+              <img
+                src={`./pet-finder/img/${card.image}`} alt={card.title}
+              />
+              </figure>
+              <p>{card.title}</p>
+          </div>
+        )) }
+      </div> 
+    </div> 
+  )
+}
+
 function App() {
   //Create state variables 
   const [filteredPets, setFilteredPets] = useState(database);
@@ -17,6 +56,7 @@ function App() {
   //This state controls card visibility at page load
   const [showPetCard, setShowPetCard] = useState(false);
   const [showDogCard, setShowDogCard] = useState(false);
+  const [imageCard, setImageCard] = useState(true);
 
   //Used for searchbar.js
   const handleSearch = (searchTerm) => {
@@ -67,22 +107,9 @@ function App() {
             <SearchDog onClick={handleDogSearch}/>
             {showDogCard && <PetCard data={filteredDogs} />}
         </div>
-        <div className='card-search__wrapper'>
-          <div className='card-search__container'>
-            {/* Dog card to click on and search for certain attributes */}
-            {/* <div> */}
-              <CardForDog/>
-            {/* </div> */}
-            {/* Cat card to click on and search for certain attributes */}
-            {/* <div> */}
-              <CardForCat/>
-            {/* </div> */}
-            {/* Other animal card to click on and search for certain attributes */}
-            {/* <div> */}
-              <CardForOtherPets/>
-            {/* </div> */}
-          </div>     
-          
+        <div>
+          {/* Section that shows imagecards that when clicked on open form */}
+          <ImageCardDisplay/>
         </div>
       </div>
     </div>
