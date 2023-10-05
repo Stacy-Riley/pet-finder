@@ -7,13 +7,27 @@ import PetCard from './petcard.js';
 import SearchBar from './searchbar.js';
 import SearchDog from './searchdog.js';
 import Header from './header.js';
-import CardForDog from './cardLinkDog';
-import CardForCat from './cardLinkCat';
-import CardForOtherPets from './cardLinkOtherPets';
+// import CardForDog from './cardLinkDog';
+// import CardForCat from './cardLinkCat';
+// import CardForOtherPets from './cardLinkOtherPets';
 
-//Function holds array of image cards, their state, and
-//displays them with the map function:
+
+//Function to display Imaged cards and then open up the search form when clicked on:
 function ImageCardDisplay() {
+  const [shouldShowSearchDog, setShouldShowSearchDog] = useState(false);
+  const [shouldShowImageCardDiv, setShouldShowImageCardDiv] = useState(true);
+
+  const handleSearchFormDisplay = (cardTitle) => {
+    if(cardTitle === 'Dogs'){
+      //logic to display SearchDog and hide ImageCards
+      setShouldShowImageCardDiv(false);
+      setShouldShowSearchDog(true);
+
+      console.log("title here:", cardTitle);
+      
+    }
+  }
+  //Holds array of image cards, their state, and displays them with the map function:
   const [imageCard, setImageCard] = useState (
     [{
       image: 'dog-svgrepo-com.svg',
@@ -32,10 +46,15 @@ function ImageCardDisplay() {
     }
   ])
   return(
-    <div className='card-search__wrapper' > 
+    <div className='card-search__wrapper'> 
       <div className='card-search__container'>
         {imageCard.map(card => (
-          <div key={card.id}>
+          
+          <div 
+            key={card.id} 
+            // Pass card title to the function when clicked on
+            onClick={ () => handleSearchFormDisplay(card.title)} 
+          >
               <figure>
               <img
                 src={`./pet-finder/img/${card.image}`} alt={card.title}
