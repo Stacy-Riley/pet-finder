@@ -7,26 +7,34 @@ import PetCard from './petcard.js';
 import SearchBar from './searchbar.js';
 import SearchDog from './searchdog.js';
 import Header from './header.js';
-// import CardForDog from './cardLinkDog';
-// import CardForCat from './cardLinkCat';
-// import CardForOtherPets from './cardLinkOtherPets';
+
 
 
 //Function to display Imaged cards and then open up the search form when clicked on:
 function ImageCardDisplay() {
   const [shouldShowSearchDog, setShouldShowSearchDog] = useState(false);
+  const [shouldShowSearchCat, setShouldShowSearchCat] = useState(false);
+  const [shouldShowSearchOther, setShouldShowSearchOther] = useState(false);
   const [shouldShowImageCardDiv, setShouldShowImageCardDiv] = useState(true);
+  const [filteredDogs, setFilteredDogs] = useState(database);
+  const [showDogCard, setShowDogCard] = useState(false);
+  const [filteredPets, setFilteredPets] = useState(database);
 
+  //Checks which card the user clicked on and sets state to display proper form
   const handleSearchFormDisplay = (cardTitle) => {
     if(cardTitle === 'Dogs'){
       //logic to display SearchDog and hide ImageCards
       setShouldShowImageCardDiv(false);
       setShouldShowSearchDog(true);
-
-      console.log("title here:", cardTitle);
-      
+    } else if (cardTitle === 'Cats') {
+      setShouldShowImageCardDiv(false);
+      setShouldShowSearchCat(true);
+    } else if (cardTitle === 'Other Pets') {
+      setShouldShowImageCardDiv(false);
+      setShouldShowSearchOther(true);
     }
   }
+
   //Holds array of image cards, their state, and displays them with the map function:
   const [imageCard, setImageCard] = useState (
     [{
@@ -45,58 +53,9 @@ function ImageCardDisplay() {
       id: '3'
     }
   ])
-  return(
-    <div className='card-search__wrapper'> 
-      <div className='card-search__container'>
-        {imageCard.map(card => (
-          
-          <div 
-            key={card.id} 
-            // Pass card title to the function when clicked on
-            onClick={ () => handleSearchFormDisplay(card.title)} 
-          >
-              <figure>
-              <img
-                src={`./pet-finder/img/${card.image}`} alt={card.title}
-              />
-              </figure>
-              <p>{card.title}</p>
-          </div>
-        )) }
-      </div> 
-    </div> 
-  )
-}
-
-function App() {
-  //Create state variables 
-  const [filteredPets, setFilteredPets] = useState(database);
-  const [filteredDogs, setFilteredDogs] = useState(database);
-  //This state controls card visibility at page load
-  const [showPetCard, setShowPetCard] = useState(false);
-  const [showDogCard, setShowDogCard] = useState(false);
-  const [imageCard, setImageCard] = useState(true);
-
-  //Used for searchbar.js
-  const handleSearch = (searchTerm) => {
-    //test that it is working
-  // console.log('Search Term:', searchTerm);
-    const filtered = database.filter((pet) => {
-      const breedMatch = searchTerm.toLowerCase() === pet.breed.toLowerCase();
-      const typeMatch = searchTerm.toLowerCase() === pet.type.toLowerCase();
-    //Only return items that match all the above properties:
-      return breedMatch || typeMatch;
-  })
-
-  setFilteredPets(filtered);
-  setShowPetCard(true);
-
-  //test that is is working
-  // console.log('Filtered Pets:', filtered);
-}
 
 //used for searchdog.js
-  const handleDogSearch = (filters) => {
+const handleDogSearch = (filters) => {
   //This takes in the "filters" the user selected in the searchdog.js form
       const filteredResults = database.filter((pet) => {
         //typeMatch makes sure we are only displaying "dog"
@@ -113,6 +72,56 @@ function App() {
     setShowDogCard(true);
   }
 
+  return(
+    <div className='card-search__wrapper'> 
+      <div className='card-search__container'>
+        {/* When page loads it is true */}
+        {shouldShowImageCardDiv && imageCard.map((card) => (  
+          <div 
+            key={card.id} 
+            // Pass card title to the function when clicked on
+            onClick={ () => handleSearchFormDisplay(card.title)} 
+          >
+              <figure>
+                <img
+                  src={`./pet-finder/img/${card.image}`} alt={card.title}
+                />
+              </figure>
+              <p>{card.title}</p>
+          </div>
+        ))}
+      </div> 
+      {/* Render SearchDog component - Must have seperate div than map div */}   
+      <div>
+        {shouldShowSearchDog && <SearchDog onClick={handleDogSearch}/>} 
+        {showDogCard && <PetCard data={filteredDogs} />}
+      </div>
+    </div> 
+  )
+}
+
+function App() {
+  //Create state variables 
+  const [filteredPets, setFilteredPets] = useState(database);
+  //This state controls card visibility at page load
+  const [showPetCard, setShowPetCard] = useState(false);
+
+  //Used for searchbar.js
+  const handleSearch = (searchTerm) => {
+    //test that it is working
+  // console.log('Search Term:', searchTerm);
+    const filtered = database.filter((pet) => {
+      const breedMatch = searchTerm.toLowerCase() === pet.breed.toLowerCase();
+      const typeMatch = searchTerm.toLowerCase() === pet.type.toLowerCase();
+    //Only return items that match all the above properties:
+      return breedMatch || typeMatch;
+  })
+
+  setFilteredPets(filtered);
+  setShowPetCard(true);
+}
+
+
   return (
     <div>
       <div>
@@ -121,10 +130,6 @@ function App() {
           <SearchBar onSearch={handleSearch}/>
             {/* Conditionally render the PetCard Component */}
             {showPetCard && <PetCard data={filteredPets} />}
-        </div>
-        <div>
-            <SearchDog onClick={handleDogSearch}/>
-            {showDogCard && <PetCard data={filteredDogs} />}
         </div>
         <div>
           {/* Section that shows imagecards that when clicked on open form */}
