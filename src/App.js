@@ -6,6 +6,8 @@ import database from './database.json';
 import PetCard from './petcard.js';
 import SearchBar from './searchbar.js';
 import SearchDog from './searchdog.js';
+import SearchCat from './searchcat.js';
+import SearchOther from './searchother.js';
 import Header from './header.js';
 
 
@@ -17,7 +19,11 @@ function ImageCardDisplay() {
   const [shouldShowSearchOther, setShouldShowSearchOther] = useState(false);
   const [shouldShowImageCardDiv, setShouldShowImageCardDiv] = useState(true);
   const [filteredDogs, setFilteredDogs] = useState(database);
+  const [filteredCats, setFilteredCats] = useState(database);
+  const [filteredOther, setFilteredOther] = useState(database);
   const [showDogCard, setShowDogCard] = useState(false);
+  const [showCatCard, setShowCatCard] = useState(false);
+  const [showOtherCard, setShowOtherCard] = useState(false);
   const [filteredPets, setFilteredPets] = useState(database);
 
   //Checks which card the user clicked on and sets state to display proper form
@@ -72,6 +78,43 @@ const handleDogSearch = (filters) => {
     setShowDogCard(true);
   }
 
+//used for searchcat.js
+const handleCatSearch = (filters) => {
+  //This takes in the "filters" the user selected in the searchdcat.js form
+      const filteredResults = database.filter((pet) => {
+        //typeMatch makes sure we are only displaying "dog"
+        const typeMatch = filters.type === pet.type;
+        const breedMatch = filters.breed === pet.breed || filters.breed === '';
+        const ageMatch = filters.age === pet.age || filters.age === '';
+        const genderMatch = filters.gender === pet.gender || filters.gender === '';
+        const sizeMatch = filters.size === pet.size || filters.size === '';
+        //Only return items that match all the above properties:
+        return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
+        });
+
+    setFilteredCats(filteredResults);
+    setShowCatCard(true);
+}
+
+//used for searchother.js
+const handleOtherSearch = (filters) => {
+  //This takes in the "filters" the user selected in the searchdcat.js form
+      const filteredResults = database.filter((pet) => {
+        //typeMatch makes sure we are only displaying "dog"
+        const typeMatch = filters.type === pet.type;
+        const breedMatch = filters.breed === pet.breed || filters.breed === '';
+        const ageMatch = filters.age === pet.age || filters.age === '';
+        const genderMatch = filters.gender === pet.gender || filters.gender === '';
+        const sizeMatch = filters.size === pet.size || filters.size === '';
+        //Only return items that match all the above properties:
+        return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
+        });
+
+    setFilteredOther(filteredResults);
+    setShowOtherCard(true);
+}
+
+
   return(
     <div className='card-search__wrapper'> 
       <div className='card-search__container'>
@@ -84,17 +127,26 @@ const handleDogSearch = (filters) => {
           >
               <figure>
                 <img
-                  src={`./pet-finder/img/${card.image}`} alt={card.title}
+                  src={`./img/${card.image}`} alt={card.title}
                 />
               </figure>
               <p>{card.title}</p>
           </div>
         ))}
       </div> 
-      {/* Render SearchDog component - Must have seperate div than map div */}   
+      {/* Render SearchDog, SearchCat, & SearchOther components - 
+      Must have seperate div than map div */}   
       <div>
         {shouldShowSearchDog && <SearchDog onClick={handleDogSearch}/>} 
         {showDogCard && <PetCard data={filteredDogs} />}
+      </div>
+      <div>
+        {shouldShowSearchCat && <SearchCat onClick={handleCatSearch}/>} 
+        {showCatCard && <PetCard data={filteredCats} />}
+      </div>
+      <div>
+        {shouldShowSearchOther && <SearchOther onClick={handleOtherSearch}/>} 
+        {showOtherCard && <PetCard data={filteredOther} />}
       </div>
     </div> 
   )
