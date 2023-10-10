@@ -116,7 +116,6 @@ function SearchDog ( { onClick }){
 							<option value="puppy">Puppy</option>
 							<option value="young">Young</option>
 							<option value="adult">Adult</option>
-							<option value="senior">Senior</option>
 						</select>
 						<br/>
 						{ /*Select gender field*/ }
