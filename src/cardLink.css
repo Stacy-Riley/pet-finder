@@ -10,11 +10,12 @@
 .card-search__wrapper {
 	display: flex;
 	justify-content: center;
+	flex-direction: column;
 }	
 
 .card-search__container {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 /* Image card styles */
@@ -25,7 +26,7 @@
 	width: 181px;
 	height: 155px;
 	padding: 16px;
-	margin: 0 40px;
+	margin: 20px 40px;
 }
 
 .card-search__container figure {
