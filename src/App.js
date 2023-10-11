@@ -178,6 +178,9 @@ function App() {
 
 const toggleSearchBarVisibility = () => {
   setSearchBarVisibility(false);
+  //If there were cards displayed in the first searchbar and then an Image card was pressed
+  //this will hide the card 
+  setShowPetCard(false);
 }
 
   return (
