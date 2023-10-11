@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './searchform.css';
 
 function SearchCat ( { onClick }){
 	const [selectedCat, selectedCatSet] = useState('cat');
@@ -66,14 +67,14 @@ function SearchCat ( { onClick }){
 	}
 
 	return (
-			<div className='search-cat-wrapper'>
-				<div className='search-cat-container'>
+			<div className='search-wrapper'>
+				<div className='search-container'>
 					<form>
-						<div>
+						<div className='form-title-container'>
 							<h2>Find Your Best Match</h2>
 							<p>It only takes 60 seconds!</p>
 						</div>
-						<div>
+						<div className='form-input-container'>
 						{/* Selected dog as type - not to be displayed on screen */}
 						<label htmlFor='selectedCat' style={selectElementStyle}></label>
 						<select
@@ -87,7 +88,7 @@ function SearchCat ( { onClick }){
 						</select>
 						{ /*Select breed field*/ }
 						<label htmlFor='selectedBreed'>Breed</label>
-						<br/>
+						
 						<select 
 							name="selectedBreed" 
 							id="selectedBreed"
@@ -109,10 +110,10 @@ function SearchCat ( { onClick }){
 							<option value="turkish angora">Turkish Angora</option>
 							<option value="tuxedo">Tuxedo</option>
 						</select>
-						<br/>
+						
 						{ /*Select age field*/ }
 						<label htmlFor='selectedAge'>Age</label>
-						<br/>
+						
 						<select 
 							name="selectedAge" 
 							id="selectedAge"
@@ -124,10 +125,10 @@ function SearchCat ( { onClick }){
 							<option value="young">Young</option>
 							<option value="adult">Adult</option>
 						</select>
-						<br/>
+						
 						{ /*Select gender field*/ }
 						<label htmlFor='selectedGender'>Gender</label>
-						<br/>
+						
 						<select 
 							name="selectedGender" 
 							id="selectedGender"
@@ -138,10 +139,10 @@ function SearchCat ( { onClick }){
 							<option value="male">Male</option>
 							<option value="female">Female</option>
 						</select>
-						<br/>
+						
 						{ /*Select size field*/ }
 						<label htmlFor='selectedSize'>Size</label>
-						<br/>
+						
 						<select 
 							name="selectedSize" 
 							id="selectedSize"
@@ -155,8 +156,8 @@ function SearchCat ( { onClick }){
 							
 						</select>
 						</div>
-						<br/>
-						<div>
+						
+						<div className='form-button-container'>
 							<button type='button' onClick={handleCatSearch}>Search</button>
 						</div>
 					</form>
