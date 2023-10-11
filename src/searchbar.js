@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './searchbar.css';
 
-function SearchBar( { onSearch }) {
+function SearchBar( { isVisible, onSearch }) {
 	const[searchTerm, setSearchTerm] = useState('');
 	// const [locationValue, setLocationValue] = useState('')
 
@@ -17,7 +17,7 @@ function SearchBar( { onSearch }) {
 		onSearch(searchTerm);
 	}
 	return (
-		<div className='searchbar__wrapper'>
+		<div className='searchbar__wrapper' style={{ display: isVisible ? "block" : "none" }}>
 			<div className="searchbar__container">
 				<div className='searchbar__container__title'>
 					<h1>Find Your New <span>Best Friend</span></h1>

@@ -13,7 +13,7 @@ import Header from './header.js';
 
 
 //Function to display Imaged cards and then open up the search form when clicked on:
-function ImageCardDisplay() {
+function ImageCardDisplay({ onImageClick }) {
   const [shouldShowSearchDog, setShouldShowSearchDog] = useState(false);
   const [shouldShowSearchCat, setShouldShowSearchCat] = useState(false);
   const [shouldShowSearchOther, setShouldShowSearchOther] = useState(false);
@@ -25,7 +25,6 @@ function ImageCardDisplay() {
   const [showCatCard, setShowCatCard] = useState(false);
   const [showOtherCard, setShowOtherCard] = useState(false);
   const [filteredPets, setFilteredPets] = useState(database);
-
   //Checks which card the user clicked on and sets state to display proper form
   const handleSearchFormDisplay = (cardTitle) => {
     if(cardTitle === 'Dogs'){
@@ -39,6 +38,7 @@ function ImageCardDisplay() {
       setShouldShowImageCardDiv(false);
       setShouldShowSearchOther(true);
     }
+    // setSearchBarVisibility(false);
   }
 
   //Holds array of image cards, their state, and displays them with the map function:
@@ -82,7 +82,7 @@ const handleDogSearch = (filters) => {
 const handleCatSearch = (filters) => {
   //This takes in the "filters" the user selected in the searchdcat.js form
       const filteredResults = database.filter((pet) => {
-        //typeMatch makes sure we are only displaying "dog"
+        //typeMatch makes sure we are only displaying "cat"
         const typeMatch = filters.type === pet.type;
         const breedMatch = filters.breed === pet.breed || filters.breed === '';
         const ageMatch = filters.age === pet.age || filters.age === '';
@@ -94,13 +94,14 @@ const handleCatSearch = (filters) => {
 
     setFilteredCats(filteredResults);
     setShowCatCard(true);
+    
 }
 
 //used for searchother.js
 const handleOtherSearch = (filters) => {
   //This takes in the "filters" the user selected in the searchdcat.js form
       const filteredResults = database.filter((pet) => {
-        //typeMatch makes sure we are only displaying "dog"
+        //typeMatch makes sure we are only displaying "other"
         const typeMatch = filters.type === pet.type;
         const breedMatch = filters.breed === pet.breed || filters.breed === '';
         const ageMatch = filters.age === pet.age || filters.age === '';
@@ -117,7 +118,7 @@ const handleOtherSearch = (filters) => {
 
   return(
     <div className='card-search__wrapper'> 
-      <div className='card-search__container'>
+      <div className='card-search__container' onClick={onImageClick}>
         {/* When page loads it is true */}
         {shouldShowImageCardDiv && imageCard.map((card) => (  
           <div 
@@ -157,6 +158,8 @@ function App() {
   const [filteredPets, setFilteredPets] = useState(database);
   //This state controls card visibility at page load
   const [showPetCard, setShowPetCard] = useState(false);
+  //This state controls searchBar in header visibility:
+  const [isSearchBarVisible, setSearchBarVisibility] = useState(true);
 
   //Used for searchbar.js
   const handleSearch = (searchTerm) => {
@@ -173,19 +176,27 @@ function App() {
   setShowPetCard(true);
 }
 
+const toggleSearchBarVisibility = () => {
+  setSearchBarVisibility(false);
+}
 
   return (
     <div>
       <div>
         <div className='header-container'>
           <Header/>
-          <SearchBar onSearch={handleSearch}/>
+          <SearchBar 
+            onSearch={handleSearch}
+            isVisible={isSearchBarVisible}
+          />
             {/* Conditionally render the PetCard Component */}
             {showPetCard && <PetCard data={filteredPets} />}
         </div>
         <div>
           {/* Section that shows imagecards that when clicked on open form */}
-          <ImageCardDisplay/>
+          <ImageCardDisplay
+            onImageClick={toggleSearchBarVisibility}
+          />
         </div>
       </div>
     </div>
