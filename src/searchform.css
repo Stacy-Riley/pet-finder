@@ -1,0 +1,59 @@
+@charset "UTF-8";
+/* CSS Document */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.search-wrapper {
+	display: flex;
+	justify-content: center;
+
+}
+.form-input-container {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.form-input-container select {
+	/* width: 300px; */
+	height: 30px;
+	/* padding-left: 8px; */
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+.form-title-container h2 {
+	font-size: 48px;
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.form-title-container p {
+	font-size: 25px;
+	text-align: center;
+}
+
+.form-button-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 20px;
+}
+
+.form-button-container button {
+	background-color: #6504B5;
+	border: none;
+	border-radius: 25px;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 12px;
+	width: 322px;
+	
+}
