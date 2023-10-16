@@ -9,6 +9,7 @@ function SearchDog ( { onClick }){
 	const [selectedGender, selectedGenderSet] = useState('');
 	const [selectedSize, selectedSizeSet] = useState('');
 	const [showDogCard, setShowDogCard] = useState('');
+	const [searchTerms, setSearchTerms] = useState([]);
 	//add more filter features here
 
 	//resets state of inputs but I don't know how to keep the inputs
@@ -62,16 +63,39 @@ function SearchDog ( { onClick }){
 			size: selectedSize,
 			type: selectedDog,
 		  };
+	//The non-empty filters are added to the searchTerms state, to be displayed on screen
+	//!!value syntax is a way to convert the value to a boolean. It turns any truthy value into true and any falsy value into false. So, this part filters out any empty or falsy values from the array.	
+	const nonEmptyFilters = Object.values(filters).filter(function(value) {
+		if (value !== '') {
+			return value;
+		}
+	 });
+
+		setSearchTerms(nonEmptyFilters);
+	 	console.log(nonEmptyFilters);
+
+//[selectedAge, selectedBreed, ]
 
 		onClick(filters);
 	
 	// Reset the form after submitting so it keeps working:
-	resetForm();
+	// resetForm();
 	}
 
-	// const handleClearClick = () => {
-	// 	onClick(clearCards);
-	// }
+	const handleRemoveSearchTerm = (indexToRemove) => {
+		//the underscore is a placeholder for an ignored parameter, the value here
+		const updatedSearchTerms = searchTerms.filter(function(_, index) {
+			//not equal in value and type
+			if(index !== indexToRemove){
+				return true; // Include the element in the filtered array because there wasn't a match
+			} else {
+				return false; // Exclude the element in the filtered array because there was a match
+			}
+
+		});
+					
+		setSearchTerms(updatedSearchTerms);
+	}
 
 	return (
 			<div className='search-wrapper'>
@@ -158,9 +182,15 @@ function SearchDog ( { onClick }){
 						<div className='form-button-container'>
 							<button type='button' onClick={handleDogSearch}>Search</button>
 						</div>
-						{/* <div>
-							<button type='button' onClick={handleClearClick}>Clear</button>
-						</div> */}
+						{/* Map over the user selected inputs and display on the screen */}
+						<div>
+							{searchTerms.map((term, index) => (
+								<div key={index}>
+									{term}
+									<button onClick={()=> handleRemoveSearchTerm(index)}> x</button>
+								</div>
+							))}
+						</div>
 					</form>
 				</div>
 			</div>
