@@ -1,5 +1,5 @@
 //npm start
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './searchform.css';
 
 function SearchDog ( { onClick }){
@@ -30,6 +30,7 @@ function SearchDog ( { onClick }){
 	//Event listener of sorts that sets the state to be the entered data from the user
 	//Uses the name from the form element to determine which state variable to update:
 	const handleChange = (e) => {
+		// e.preventdefault();
 		const {name, value} = e.target;
 
 		switch (name) {
@@ -61,10 +62,15 @@ function SearchDog ( { onClick }){
 			breed: selectedBreed,
 			gender: selectedGender,
 			size: selectedSize,
-			type: selectedDog,
+			// type: selectedDog,
 		  };
+
+		  
+		  
 	//The non-empty filters are added to the searchTerms state, to be displayed on screen
 	//!!value syntax is a way to convert the value to a boolean. It turns any truthy value into true and any falsy value into false. So, this part filters out any empty or falsy values from the array.	
+	//"Object.values" pulls the value from the filters object
+	//".filter" method creates a new array of only non-empty values
 	const nonEmptyFilters = Object.values(filters).filter(function(value) {
 		if (value !== '') {
 			return value;
@@ -72,15 +78,25 @@ function SearchDog ( { onClick }){
 	 });
 
 		setSearchTerms(nonEmptyFilters);
-	 	console.log(nonEmptyFilters);
+		// setSearchTerms(nonEmptyFilters, () => {
+		// 	console.log("Non-empty Filters", nonEmptyFilters);
+		//  	console.log("Search Terms", searchTerms);
+		// });
+		
+		
 
 //[selectedAge, selectedBreed, ]
 
 		onClick(filters);
 	
 	// Reset the form after submitting so it keeps working:
-	// resetForm();
+	resetForm();
 	}
+
+	//Added this to console log when the searchTerms state is changed:
+	useEffect(() => {
+		console.log("Search Terms", searchTerms);
+	  }, [searchTerms]); // Runs whenever searchTerms changes
 
 	const handleRemoveSearchTerm = (indexToRemove) => {
 		//the underscore is a placeholder for an ignored parameter, the value here
@@ -186,8 +202,8 @@ function SearchDog ( { onClick }){
 						<div>
 							{searchTerms.map((term, index) => (
 								<div key={index}>
+									<button onClick={()=> handleRemoveSearchTerm(index)}> x </button>
 									{term}
-									<button onClick={()=> handleRemoveSearchTerm(index)}> x</button>
 								</div>
 							))}
 						</div>
