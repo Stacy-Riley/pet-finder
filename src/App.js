@@ -25,20 +25,24 @@ function ImageCardDisplay({ onImageClick }) {
   const [showCatCard, setShowCatCard] = useState(false);
   const [showOtherCard, setShowOtherCard] = useState(false);
   const [filteredPets, setFilteredPets] = useState(database);
+
+
   //Checks which card the user clicked on and sets state to display proper form
   const handleSearchFormDisplay = (cardTitle) => {
     if(cardTitle === 'Dogs'){
       //logic to display SearchDog and hide ImageCards
       setShouldShowImageCardDiv(false);
       setShouldShowSearchDog(true);
+      //logic to display SearchCat and hide ImageCards
     } else if (cardTitle === 'Cats') {
       setShouldShowImageCardDiv(false);
       setShouldShowSearchCat(true);
+      //logic to display SearchOther and hide ImageCards
     } else if (cardTitle === 'Other Pets') {
       setShouldShowImageCardDiv(false);
       setShouldShowSearchOther(true);
     }
-    // setSearchBarVisibility(false);
+    
   }
 
   //Holds array of image cards, their state, and displays them with the map function:
