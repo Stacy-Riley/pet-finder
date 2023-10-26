@@ -26,32 +26,7 @@ function SearchDog ( { onClick }){
 	const selectElementStyle = {
 		display: 'none',
 	}
-
-	//Event listener of sorts that sets the state to be the entered data from the user
-	//Uses the name from the form element to determine which state variable to update:
-	const handleChange = (e) => {
-		// e.preventdefault();
-		const {name, value} = e.target;
-
-		switch (name) {
-			case "selectedAge":
-				//if the value === "any", empty the value/reset the value 
-				//to empty string, otherwise set the value to the state of the selected item
-				selectedAgeSet(value === "any" ? "" : value);
-				break;
-			case "selectedBreed":
-				selectedBreedSet(value === "any" ? "" : value);
-				break;
-			case "selectedGender":
-				selectedGenderSet(value === "any" ? "" : value);
-				break;
-			case "selectedSize":
-				selectedSizeSet(value === "any" ? "" : value);
-				break;
-			default:
-				break;
-		}
-	}  
+	 
 
 	//Triggered when the search button is clicked and collects
 	//the selected filter values, creates a 'filters' object and
@@ -62,9 +37,10 @@ function SearchDog ( { onClick }){
 			breed: selectedBreed,
 			gender: selectedGender,
 			size: selectedSize,
-			// type: selectedDog,
+			type: selectedDog,
 		  };
-
+console.log("filters from SearchDog", filters)
+		  onClick(filters);
 		  
 		  
 	//The non-empty filters are added to the searchTerms state, to be displayed on screen
@@ -84,10 +60,6 @@ function SearchDog ( { onClick }){
 		// });
 		
 		
-
-//[selectedAge, selectedBreed, ]
-
-		onClick(filters);
 	
 	// Reset the form after submitting so it keeps working:
 	resetForm();
