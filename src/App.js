@@ -77,7 +77,7 @@ const handleDogSearch = (filters) => {
         //Only return items that match all the above properties:
         return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
         });
-
+console.log("filteredResults from Appl.js", filteredResults);
     setFilteredDogs(filteredResults);
     setShowDogCard(true);
   }
