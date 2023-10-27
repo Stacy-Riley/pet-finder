@@ -1,5 +1,6 @@
 //npm start
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid'; //library to generate unique keys 
 import './searchform.css';
 
 function SearchDog ( { onClick }){
@@ -39,7 +40,7 @@ function SearchDog ( { onClick }){
 			size: selectedSize,
 			type: selectedDog,
 		  };
-console.log("filters from SearchDog", filters)
+// console.log("filters from SearchDog", filters)
 		  onClick(filters);
 		  
 		  
@@ -54,34 +55,23 @@ console.log("filters from SearchDog", filters)
 	 });
 
 		setSearchTerms(nonEmptyFilters);
-		// setSearchTerms(nonEmptyFilters, () => {
-		// 	console.log("Non-empty Filters", nonEmptyFilters);
-		//  	console.log("Search Terms", searchTerms);
-		// });
 		
-		
-	
 	// Reset the form after submitting so it keeps working:
 	resetForm();
 	}
 
-	//Added this to console log when the searchTerms state is changed:
-	useEffect(() => {
-		console.log("Search Terms", searchTerms);
-	  }, [searchTerms]); // Runs whenever searchTerms changes
-
-	const handleRemoveSearchTerm = (indexToRemove) => {
-		//the underscore is a placeholder for an ignored parameter, the value here
-		const updatedSearchTerms = searchTerms.filter(function(_, index) {
+//Removes the user selected inputs from screen under search button
+	const handleRemoveSearchTerm = (termToRemove) => {
+		const updatedSearchTerms = searchTerms.filter(function(term) {
 			//not equal in value and type
-			if(index !== indexToRemove){
+			if(term !== termToRemove){
 				return true; // Include the element in the filtered array because there wasn't a match
 			} else {
 				return false; // Exclude the element in the filtered array because there was a match
 			}
 
 		});
-					
+console.log("Updated Search Terms from searchdog component", updatedSearchTerms)
 		setSearchTerms(updatedSearchTerms);
 	}
 
@@ -172,9 +162,10 @@ console.log("filters from SearchDog", filters)
 						</div>
 						{/* Map over the user selected inputs and display on the screen */}
 						<div>
-							{searchTerms.map((term, index) => (
-								<div key={index}>
-									<button onClick={()=> handleRemoveSearchTerm(index)}> x </button>
+							{searchTerms.map((term) => (
+								//gave each term a unique key by importing from library uuid
+								<div key={uuidv4()}>
+									<button onClick={()=> handleRemoveSearchTerm(term)}> x </button>
 									{term}
 								</div>
 							))}
