@@ -41,7 +41,14 @@ function SearchDog ( { onClick }){
 			type: selectedDog,
 		  };
 // console.log("filters from SearchDog", filters)
-		  onClick(filters);
+// console.log('searchTerms list:', searchTerms)
+
+	// if(searchTerms !== '') {
+	// 	onclick(searchTerms)
+	// }	else {
+	// 	onClick(filters);
+	// }	  
+	onClick(filters);
 		  
 		  
 	//The non-empty filters are added to the searchTerms state, to be displayed on screen
@@ -71,8 +78,9 @@ function SearchDog ( { onClick }){
 			}
 
 		});
-console.log("Updated Search Terms from searchdog component", updatedSearchTerms)
 		setSearchTerms(updatedSearchTerms);
+		console.log("Updated Search Terms from updatedSearchTerms", updatedSearchTerms)
+		console.log("Updated Search Terms from searchTerms", searchTerms)
 	}
 
 	return (
