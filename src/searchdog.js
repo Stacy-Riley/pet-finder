@@ -1,5 +1,5 @@
 //npm start
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid'; //library to generate unique keys 
 import './searchform.css';
 
@@ -50,7 +50,6 @@ function SearchDog ( { onClick }){
 	// }	  
 	onClick(filters);
 		  
-		  
 	//The non-empty filters are added to the searchTerms state, to be displayed on screen
 	//!!value syntax is a way to convert the value to a boolean. It turns any truthy value into true and any falsy value into false. So, this part filters out any empty or falsy values from the array.	
 	//"Object.values" pulls the value from the filters object
@@ -68,10 +67,10 @@ function SearchDog ( { onClick }){
 	}
 
 //Removes the user selected inputs from screen under search button
-	const handleRemoveSearchTerm = (termToRemove) => {
-		const updatedSearchTerms = searchTerms.filter(function(term) {
+	const handleRemoveSearchTerm = (valueToRemove) => {
+		const updatedSearchTerms = searchTerms.filter(function(value) {
 			//not equal in value and type
-			if(term !== termToRemove){
+			if(value !== valueToRemove){
 				return true; // Include the element in the filtered array because there wasn't a match
 			} else {
 				return false; // Exclude the element in the filtered array because there was a match
@@ -80,8 +79,12 @@ function SearchDog ( { onClick }){
 		});
 		setSearchTerms(updatedSearchTerms);
 		console.log("Updated Search Terms from updatedSearchTerms", updatedSearchTerms)
-		console.log("Updated Search Terms from searchTerms", searchTerms)
 	}
+
+	useEffect(() => {
+		// This code will run every time searchTerms state changes
+		console.log("Updated Search Terms from searchTerms", searchTerms);
+	  }, [searchTerms]); // Specify searchTerms as a dependency for the useEffect hook
 
 	return (
 			<div className='search-wrapper'>
@@ -170,11 +173,11 @@ function SearchDog ( { onClick }){
 						</div>
 						{/* Map over the user selected inputs and display on the screen */}
 						<div>
-							{searchTerms.map((term) => (
+							{searchTerms.map((value) => (
 								//gave each term a unique key by importing from library uuid
 								<div key={uuidv4()}>
-									<button onClick={()=> handleRemoveSearchTerm(term)}> x </button>
-									{term}
+									<button onClick={()=> handleRemoveSearchTerm(value)}> x </button>
+									{value}
 								</div>
 							))}
 						</div>
