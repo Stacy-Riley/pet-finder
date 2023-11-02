@@ -9,82 +9,78 @@ function SearchDog ( { onClick }){
 	const [selectedBreed, selectedBreedSet] = useState('');
 	const [selectedGender, selectedGenderSet] = useState('');
 	const [selectedSize, selectedSizeSet] = useState('');
-	const [showDogCard, setShowDogCard] = useState('');
-	const [searchTerms, setSearchTerms] = useState([]);
-	//add more filter features here
+	// const [showDogCard, setShowDogCard] = useState(false);
 
-	//resets state of inputs but I don't know how to keep the inputs
-	//the user selected on the form still.
-	const resetForm = () => {
-		selectedAgeSet('');
-		selectedBreedSet('');
-		selectedGenderSet('');
-		selectedSizeSet('');
-	}
+	const [filters, setFilters] = useState({
+		age: selectedAge,
+		breed: selectedBreed,
+		gender: selectedGender,
+		size: selectedSize,
+		type: selectedDog,
+	  });
+	
 	
 
 	// Selected dog as type - not to be displayed on screen
 	const selectElementStyle = {
 		display: 'none',
 	}
-	 
-
+	
+	const buttonSpacing = {
+		margin: '0 5px 10px 0',
+		// background: 'none',
+	}
+	
 	//Triggered when the search button is clicked and collects
 	//the selected filter values, creates a 'filters' object and
 	//passes it to the 'onClick' function provided as a prop:
 	const handleDogSearch = () => {
-		const filters = {
-			age: selectedAge,
-			breed: selectedBreed,
-			gender: selectedGender,
-			size: selectedSize,
-			type: selectedDog,
-		  };
+		// const filters = {
+		// 	age: selectedAge,
+		// 	breed: selectedBreed,
+		// 	gender: selectedGender,
+		// 	size: selectedSize,
+		// 	type: selectedDog,
+		//   };
+	
+		
 // console.log("filters from SearchDog", filters)
 // console.log('searchTerms list:', searchTerms)
 
-	// if(searchTerms !== '') {
-	// 	onclick(searchTerms)
-	// }	else {
-	// 	onClick(filters);
-	// }	  
+	console.log("filters in handleDogSearch - component", filters)  
+
 	onClick(filters);
 		  
-	//The non-empty filters are added to the searchTerms state, to be displayed on screen
-	//!!value syntax is a way to convert the value to a boolean. It turns any truthy value into true and any falsy value into false. So, this part filters out any empty or falsy values from the array.	
-	//"Object.values" pulls the value from the filters object
-	//".filter" method creates a new array of only non-empty values
-	const nonEmptyFilters = Object.values(filters).filter(function(value) {
-		if (value !== '') {
-			return value;
-		}
-	 });
 
-		setSearchTerms(nonEmptyFilters);
 		
-	// Reset the form after submitting so it keeps working:
-	resetForm();
 	}
 
 //Removes the user selected inputs from screen under search button
 	const handleRemoveSearchTerm = (valueToRemove) => {
-		const updatedSearchTerms = searchTerms.filter(function(value) {
-			//not equal in value and type
-			if(value !== valueToRemove){
-				return true; // Include the element in the filtered array because there wasn't a match
-			} else {
-				return false; // Exclude the element in the filtered array because there was a match
-			}
+		// const updatedSearchTerms = filters.filter(function(value) {
+		// 	//not equal in value and type
+		// 	if(value !== valueToRemove){
+		// 		return true; // Include the element in the filtered array because there wasn't a match
+		// 	} else {
+		// 		return false; // Exclude the element in the filtered array because there was a match
+		// 	}
 
-		});
-		setSearchTerms(updatedSearchTerms);
-		console.log("Updated Search Terms from updatedSearchTerms", updatedSearchTerms)
+		// });
+		// setFilters(updatedSearchTerms);
+		// console.log("Updated Search Terms from updatedSearchTerms", updatedSearchTerms)
 	}
 
+
+	//Update filters whenever any of the individual state variables change
 	useEffect(() => {
-		// This code will run every time searchTerms state changes
-		console.log("Updated Search Terms from searchTerms", searchTerms);
-	  }, [searchTerms]); // Specify searchTerms as a dependency for the useEffect hook
+		setFilters({
+		  age: selectedAge,
+		  breed: selectedBreed,
+		  gender: selectedGender,
+		  size: selectedSize,
+		  dog: selectedDog,
+		});
+	  }, [selectedAge, selectedBreed, selectedGender, selectedSize, selectedDog]);
 
 	return (
 			<div className='search-wrapper'>
@@ -172,15 +168,19 @@ function SearchDog ( { onClick }){
 							<button type='button' onClick={handleDogSearch}>Search</button>
 						</div>
 						{/* Map over the user selected inputs and display on the screen */}
-						<div>
-							{searchTerms.map((value) => (
-								//gave each term a unique key by importing from library uuid
-								<div key={uuidv4()}>
-									<button onClick={()=> handleRemoveSearchTerm(value)}> x </button>
-									{value}
-								</div>
-							))}
-						</div>
+							<div>
+								{Object.entries(filters).map(([key, value]) => (
+									
+									//gave each term a unique key by importing from library uuid
+									//if there is a value of '', it won't display anything
+									//below the search button
+									value !== '' ?
+									(<div key={uuidv4()}>
+										<button onClick={()=> handleRemoveSearchTerm(value)} style={buttonSpacing}>x</button>
+										{value}
+									</div>) : null
+								))}
+							</div>
 					</form>
 				</div>
 			</div>
