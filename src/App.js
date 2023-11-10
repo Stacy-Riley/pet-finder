@@ -1,5 +1,6 @@
 //constructor function is uppercase
 import React, { useState } from 'react';
+import isEqual from 'lodash/isEqual';
 import './App.css';
 import './cardLink.css';
 import database from './database.json';
@@ -9,6 +10,7 @@ import SearchDog from './searchdog.js';
 import SearchCat from './searchcat.js';
 import SearchOther from './searchother.js';
 import Header from './header.js';
+import { fill } from 'lodash';
 
 
 
@@ -63,21 +65,19 @@ function ImageCardDisplay({ onImageClick }) {
       id: '3'
     }
   ])
-
-//used for searchdog.js
+ 
+//used for searchdog.js - receives parameter of filters object from searchdog.js
 const handleDogSearch = (filters) => {
+ 
   //This takes in the "filters" the user selected in the searchdog.js form
+  //filters the keys of the filters object and if == '' or key, returns true and displays
       const filteredResults = database.filter((pet) => {
-        //typeMatch makes sure we are only displaying "dog"
-        const typeMatch = filters.type === pet.type;
-        const breedMatch = filters.breed === pet.breed || filters.breed === '';
-        const ageMatch = filters.age === pet.age || filters.age === '';
-        const genderMatch = filters.gender === pet.gender || filters.gender === '';
-        const sizeMatch = filters.size === pet.size || filters.size === '';
-        //Only return items that match all the above properties:
-        return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
-        });
-console.log("filteredResults from Appl.js", filteredResults);
+      return Object.keys(filters).every(key=>{
+        return filters[key]===""|| pet[key]===filters[key]
+      })
+       
+   });
+
     setFilteredDogs(filteredResults);
     setShowDogCard(true);
   }
@@ -85,38 +85,38 @@ console.log("filteredResults from Appl.js", filteredResults);
 //used for searchcat.js
 const handleCatSearch = (filters) => {
   //This takes in the "filters" the user selected in the searchdcat.js form
-      const filteredResults = database.filter((pet) => {
-        //typeMatch makes sure we are only displaying "cat"
-        const typeMatch = filters.type === pet.type;
-        const breedMatch = filters.breed === pet.breed || filters.breed === '';
-        const ageMatch = filters.age === pet.age || filters.age === '';
-        const genderMatch = filters.gender === pet.gender || filters.gender === '';
-        const sizeMatch = filters.size === pet.size || filters.size === '';
-        //Only return items that match all the above properties:
-        return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
-        });
+    //   const filteredResults = database.filter((pet) => {
+    //     //typeMatch makes sure we are only displaying "cat"
+    //     const typeMatch = filters.type === pet.type;
+    //     const breedMatch = filters.breed === pet.breed || filters.breed === '';
+    //     const ageMatch = filters.age === pet.age || filters.age === '';
+    //     const genderMatch = filters.gender === pet.gender || filters.gender === '';
+    //     const sizeMatch = filters.size === pet.size || filters.size === '';
+    //     //Only return items that match all the above properties:
+    //     return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
+    //     });
 
-    setFilteredCats(filteredResults);
-    setShowCatCard(true);
+    // setFilteredCats(filteredResults);
+    // setShowCatCard(true);
     
 }
 
 //used for searchother.js
 const handleOtherSearch = (filters) => {
   //This takes in the "filters" the user selected in the searchdcat.js form
-      const filteredResults = database.filter((pet) => {
-        //typeMatch makes sure we are only displaying "other"
-        const typeMatch = filters.type === pet.type;
-        const breedMatch = filters.breed === pet.breed || filters.breed === '';
-        const ageMatch = filters.age === pet.age || filters.age === '';
-        const genderMatch = filters.gender === pet.gender || filters.gender === '';
-        const sizeMatch = filters.size === pet.size || filters.size === '';
-        //Only return items that match all the above properties:
-        return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
-        });
+    //   const filteredResults = database.filter((pet) => {
+    //     //typeMatch makes sure we are only displaying "other"
+    //     const typeMatch = filters.type === pet.type;
+    //     const breedMatch = filters.breed === pet.breed || filters.breed === '';
+    //     const ageMatch = filters.age === pet.age || filters.age === '';
+    //     const genderMatch = filters.gender === pet.gender || filters.gender === '';
+    //     const sizeMatch = filters.size === pet.size || filters.size === '';
+    //     //Only return items that match all the above properties:
+    //     return typeMatch && breedMatch && ageMatch && genderMatch && sizeMatch;
+    //     });
 
-    setFilteredOther(filteredResults);
-    setShowOtherCard(true);
+    // setFilteredOther(filteredResults);
+    // setShowOtherCard(true);
 }
 
 
