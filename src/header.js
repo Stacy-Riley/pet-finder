@@ -12,7 +12,7 @@ function Header() {
 						<p>petfinder</p>	
 					</div>
 					<div className='header__container__favIcon'>
-						<span class="material-symbols-rounded">favorite</span>
+						<span className="material-symbols-rounded">favorite</span>
 					</div>
 					<div className='header__container__nav'>
 						<Navigation/>
