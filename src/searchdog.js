@@ -3,22 +3,22 @@ import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid'; //library to generate unique keys 
 import './searchform.css';
 
+
 function SearchDog ( { onClick }){
-	const [selectedDog, selectedDogSet] = useState('dog');
+	// const [selectedDog, selectedDogSet] = useState('dog'); //[] destructures
 	const [selectedAge, selectedAgeSet] = useState('');
 	const [selectedBreed, selectedBreedSet] = useState('');
 	const [selectedGender, selectedGenderSet] = useState('');
 	const [selectedSize, selectedSizeSet] = useState('');
-	// const [showDogCard, setShowDogCard] = useState(false);
+	const [showDogCard, setShowDogCard] = useState(false);
 
 	const [filters, setFilters] = useState({
 		age: selectedAge,
 		breed: selectedBreed,
 		gender: selectedGender,
 		size: selectedSize,
-		type: selectedDog,
-	  });
-	
+		type: 'dog',
+	});
 	
 
 	// Selected dog as type - not to be displayed on screen
@@ -44,11 +44,11 @@ function SearchDog ( { onClick }){
 		//   };
 	
 		
-// console.log("filters from SearchDog", filters)
+console.log("filters from SearchDog", filters)
 // console.log('searchTerms list:', searchTerms)
 
-	console.log("filters in handleDogSearch - component", filters)  
-
+	// console.log("filters in handleDogSearch - component", filters)  
+	// console.log("filters type:", filters.type)
 	onClick(filters);
 		  
 
@@ -78,9 +78,9 @@ function SearchDog ( { onClick }){
 		  breed: selectedBreed,
 		  gender: selectedGender,
 		  size: selectedSize,
-		  dog: selectedDog,
+		  type: 'dog',
 		});
-	  }, [selectedAge, selectedBreed, selectedGender, selectedSize, selectedDog]);
+	  }, [selectedAge, selectedBreed, selectedGender, selectedSize, 'dog']);
 
 	return (
 			<div className='search-wrapper'>
@@ -92,16 +92,20 @@ function SearchDog ( { onClick }){
 						</div>
 						<div className='form-input-container'>
 						{/* Selected dog as type - not to be displayed on screen */}
-						<label htmlFor='selectedDog' style={selectElementStyle}></label>
-						<select
+						<label htmlFor='selectedDog' 
+						// style={selectElementStyle}
+						>
+
+						</label>
+						{/* <select
 							name="selectedDog"
 							id="selectedDog"
 							style={selectElementStyle}
-							value={selectedDog}
-							onChange={(e) => selectedDogSet(e.target.value)}
+							defaultValue={selectedDog}
+							// onChange={(e) => selectedDogSet(e.target.value)}
 						>
-							<option value="dog"></option>
-						</select>
+							{/* <option value="dog"></option> */}
+						{/* </select> } */}
 						{ /*Select breed field*/ }
 						<label htmlFor='selectedBreed'>Breed</label>
 						
@@ -168,7 +172,7 @@ function SearchDog ( { onClick }){
 							<button type='button' onClick={handleDogSearch}>Search</button>
 						</div>
 						{/* Map over the user selected inputs and display on the screen */}
-							<div>
+							{/* <div>
 								{Object.entries(filters).map(([key, value]) => (
 									
 									//gave each term a unique key by importing from library uuid
@@ -180,7 +184,7 @@ function SearchDog ( { onClick }){
 										{value}
 									</div>) : null
 								))}
-							</div>
+							</div> */}
 					</form>
 				</div>
 			</div>
