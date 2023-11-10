@@ -32,7 +32,7 @@
 	"type": "dog",
 	"breed": "chihuahua",
 	"gender": "male",
-	"age": "senior",
+	"age": "adult",
 	"available": "true",
 	"location": "Quito",
 	"good with": ["children", "cats", "dogs"],
