@@ -1,6 +1,5 @@
 //constructor function is uppercase
 import React, { useState } from 'react';
-import isEqual from 'lodash/isEqual';
 import './App.css';
 import './cardLink.css';
 import database from './database.json';
@@ -10,7 +9,6 @@ import SearchDog from './searchdog.js';
 import SearchCat from './searchcat.js';
 import SearchOther from './searchother.js';
 import Header from './header.js';
-import { fill } from 'lodash';
 
 
 
