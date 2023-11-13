@@ -4,59 +4,41 @@ import './searchform.css';
 
 
 function SearchDog ( { onClick }){
-	const [selectedAge, selectedAgeSet] = useState('');
-	const [selectedBreed, selectedBreedSet] = useState('');
-	const [selectedGender, selectedGenderSet] = useState('');
-	const [selectedSize, selectedSizeSet] = useState('');
 	const [showDogCard, setShowDogCard] = useState(false);
+	const [userInteracted, setUserInteracted] = useState(false);
 
 	//Collects the state of all the form elements
 	const [filters, setFilters] = useState({
-		age: selectedAge,
-		breed: selectedBreed,
-		gender: selectedGender,
-		size: selectedSize,
+		age: '',
+		breed: '',
+		gender: '',
+		size: '',
 		type: 'dog',
 	});
-
-	//Updates filters whenever any of the individual state variables change
-	useEffect(() => {
-		setFilters({
-		  age: selectedAge,
-		  breed: selectedBreed,
-		  gender: selectedGender,
-		  size: selectedSize,
-		  type: 'dog',
-		});
-	  }, [selectedAge, selectedBreed, selectedGender, selectedSize, 'dog']);
-
+	
+	
 	
 	//Triggered when the search button is clicked 
 	//passes filters to the 'onClick' function provided as a prop to App.js:
 	const handleDogSearch = () => {
-		
+		setUserInteracted(true);
 		onClick(filters);
 		  
 	}
 
-// //Removes the user selected inputs from screen under search button
-// 	const handleRemoveSearchTerm = (valueToRemove) => {
-// 		const filterNew = Object.values(filters)
-// 		const updatedSearchTerms = filterNew.filter(function(value) {
-// 		// 	//not equal in value and type
-// 			if(value !== valueToRemove){
-// 				return true; // Include the element in the filtered array because there wasn't a match
-// 			} else {
-// 				return false; // Exclude the element in the filtered array because there was a match
-// 			}
-
-// 		});
-// 		setFilters(updatedSearchTerms);
-// 		console.log("Updated Search Terms from updatedSearchTerms", updatedSearchTerms)
-// 	}
-
-// //Removes the user selected inputs from screen under search button
-const handleRemoveSearchTerm = (valueToRemove) => {
+		useEffect(() => {
+			if(userInteracted){
+				// handleDogSearch()
+				onClick(filters);
+			}
+			
+		}, [filters, userInteracted])
+	
+//Removes the user selected inputs from screen under search button
+// Object.entries to convert the properties of the filters object into an array 
+//of key-value pairs. Then, it maps over these pairs using map.
+const handleClose = (valueToRemove) => {
+	setUserInteracted(true);
 	const updatedSearchTerms = Object.fromEntries(
 	  Object.entries(filters).map(([key, value]) => [
 		key,
@@ -64,6 +46,7 @@ const handleRemoveSearchTerm = (valueToRemove) => {
 	  ])
 	);
   
+	
 	setFilters(updatedSearchTerms);
 	console.log("Updated Search Terms:", updatedSearchTerms);
   };
@@ -76,6 +59,9 @@ const handleRemoveSearchTerm = (valueToRemove) => {
 
 	return (
 			<div className='search-wrapper'>
+				{/* <div className='results-container'>
+							<p>Hello there!</p>
+				</div> */}
 				<div className='search-container'>
 					<form>
 						<div className='form-title-container'>
@@ -91,8 +77,11 @@ const handleRemoveSearchTerm = (valueToRemove) => {
 						<select 
 							name="selectedBreed" 
 							id="selectedBreed"
-							value={selectedBreed}
-							onChange={(e) => selectedBreedSet(e.target.value)}
+							value={filters.breed}
+							onChange={(e) => setFilters({
+								...filters,
+								breed: e.target.value
+							})}
 						>
 							<option value="">Any</option>
 							<option value="chihuahua">Chihuahua</option>
@@ -107,8 +96,11 @@ const handleRemoveSearchTerm = (valueToRemove) => {
 						<select 
 							name="selectedAge" 
 							id="selectedAge"
-							value={selectedAge}
-							onChange={(e) => selectedAgeSet(e.target.value)}
+							value={filters.age}
+							onChange={(e) => setFilters({
+								...filters,
+								age: e.target.value
+							})}
 						>
 							<option value="">Any</option>
 							<option value="puppy">Puppy</option>
@@ -122,8 +114,11 @@ const handleRemoveSearchTerm = (valueToRemove) => {
 						<select 
 							name="selectedGender" 
 							id="selectedGender"
-							value={selectedGender}
-							onChange={(e) => selectedGenderSet(e.target.value)}
+							value={filters.gender}
+							onChange={(e) => setFilters({
+								...filters,
+								gender: e.target.value
+							})}
 						>
 							<option value="">Any</option>
 							<option value="male">Male</option>
@@ -136,8 +131,11 @@ const handleRemoveSearchTerm = (valueToRemove) => {
 						<select 
 							name="selectedSize" 
 							id="selectedSize"
-							value={selectedSize}
-							onChange={(e) => selectedSizeSet(e.target.value)}
+							value={filters.size}
+							onChange={(e) => setFilters({
+								...filters,
+								size: e.target.value
+							})}
 						>
 							<option value="">Any</option>
 							<option value="small">Small (0-25lbs)</option>
@@ -153,20 +151,23 @@ const handleRemoveSearchTerm = (valueToRemove) => {
 						{/* Map over the user selected inputs and display on the screen */}
 						
 					</form>
-					<div>
-								{Object.entries(filters).map(([key, value]) => (
-									
-									//gave each term a unique key by importing from library uuid
-									//if there is a value of '', it won't display anything
-									//below the search button
-									value !== '' ?
-									(<div key={uuidv4()}>
-										<button onClick={()=> handleRemoveSearchTerm(value)} style={buttonSpacing}>x</button>
-										{value}
-									</div>) : null
-								))}
-							</div>
+					<div className='#'>
+						{Object.entries(filters).map(([key, value]) => (
+							
+							//gave each term a unique key by importing from library uuid
+							//if there is a value of '', it won't display anything
+							//below the search button
+							value !== '' && value !== 'dog' ?
+							(<div key={uuidv4()}>
+								<button  
+								onClick={()=> handleClose(value)}
+								style={buttonSpacing}>x</button>
+								{value}
+							</div>) : null
+						))}
+					</div>
 				</div>
+				
 			</div>
 	)
 }
