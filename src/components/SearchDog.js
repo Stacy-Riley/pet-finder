@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid'; //library to generate unique keys 
-import './searchform.css';
+import '../styles/searchform.css';
 
 
 function SearchDog ( { onClick }){

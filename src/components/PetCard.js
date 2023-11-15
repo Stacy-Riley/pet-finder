@@ -1,6 +1,6 @@
 import React from 'react';
-import './petcard.css';
-import database from './database.json';
+import '../styles/petcard.css';
+import database from '../assets/data/database.json';
 
 // const srcValue = `./img/${pet.image}`;
 // console.log("srcValue",srcValue);
@@ -20,7 +20,7 @@ function PetCard ({ data }) {
               <div className='pet-card' key={pet.id}>
                 <img 
                 //images are not displaying
-                  src={`./pet-finder/img/${pet.image}`} 
+                  src={require(`../assests/images/${pet.image}`)}
                   alt={pet.name}
                   width="200"
                   height="150"   

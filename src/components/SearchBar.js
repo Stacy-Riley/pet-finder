@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './searchbar.css';
+import '../styles/searchbar.css';
 
 function SearchBar( { isVisible, onSearch }) {
 	const[searchTerm, setSearchTerm] = useState('');
@@ -13,7 +13,8 @@ function SearchBar( { isVisible, onSearch }) {
 	}
 
 	// When button is clicked, onSearch function gives the search term that the user typed
-	const handleSearch = () => {
+	const handleSearch = (e) => {
+		e.preventDefault();
 		onSearch(searchTerm);
 	}
 	return (
@@ -23,7 +24,7 @@ function SearchBar( { isVisible, onSearch }) {
 					<h1>Find Your New <span>Best Friend</span></h1>
 				</div>
 				<div className='searchbar__container__form'>
-					<form>
+					<form onSubmit={handleSearch}>
 						<div>
 						{ /*Search animal input field*/ }
 						<label htmlFor='searchInput'></label>
@@ -49,7 +50,7 @@ function SearchBar( { isVisible, onSearch }) {
 						</select> */}
 						</div>
 						<div className='searchbar__container__form__button'>
-							<button type='button' onClick={handleSearch}>Search</button>
+							<button type='submit'>Search</button>
 						
 						</div>
 					</form>

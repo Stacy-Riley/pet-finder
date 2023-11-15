@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import './searchform.css';
+import '../styles/searchform.css';
 
 function SearchOther ( { onClick }){
 	const [selectedOther, selectedOtherSet] = useState('other');

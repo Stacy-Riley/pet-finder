@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './searchform.css';
+import '../styles/searchform.css';
 
 function SearchCat ( { onClick }){
 	const [selectedCat, selectedCatSet] = useState('cat');
