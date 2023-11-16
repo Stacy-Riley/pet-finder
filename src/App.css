@@ -21,7 +21,7 @@
 .header__container {
 	display: flex;
 	flex-direction: row;
-	/* justify-content: center; */
+	/* justify-content: center; */ 
 }
 
 .header__container__logo {
@@ -37,6 +37,10 @@
   margin-right: 30px;
   }
 
+  .app-wrapper {
+    background-color: rgb(230, 233, 242);
+    padding-bottom: 50px;
+  }
 /* ********************************* */
 /* Search by animal card section */
 /* ********************************* */

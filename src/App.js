@@ -41,8 +41,8 @@ const toggleSearchBarVisibility = () => {
 
   return (
     <div>
-      <div>
-        <div className='header-container'>
+      <div className='app-wrapper'>
+        <div className='app-container'>
           <Header/>
           <SearchBar 
             onSearch={handleSearch}
