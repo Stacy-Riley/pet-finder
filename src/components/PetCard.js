@@ -19,8 +19,8 @@ function PetCard ({ data }) {
             return (
               <div className='pet-card' key={pet.id}>
                 <img 
-                //images are not displaying
-                  src={require(`../assests/images/${pet.image}`)}
+                //images displaying with use of require()
+                  src={require(`../assets/images/${pet.image}`)}
                   alt={pet.name}
                   width="200"
                   height="150"   

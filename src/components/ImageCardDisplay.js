@@ -105,7 +105,7 @@ function ImageCardDisplay({ onImageClick }) {
 			>
 				<figure>
 				  <img
-					src={require(`../assests/icons/${card.image}`)} alt={card.title}
+					src={require(`../assets/icons/${card.image}`)} alt={card.title}
 				  />
 				</figure>
 				<p>{card.title}</p>
