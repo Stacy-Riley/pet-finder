@@ -1,7 +1,11 @@
 
 @charset "UTF-8";
 /* CSS Document */
-
+/**************************************************/
+/**************************************************/
+/* Mobile Styles */
+/**************************************************/
+/**************************************************/
 *,
 *::before,
 *::after {
@@ -9,34 +13,7 @@
 }
 
 .searchbar__wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	padding-bottom: 50px;
-	
-}
-
-.searchbar__container__form {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
-
-.searchbar__container__form form {
-	display: flex;
-	justify-content: space-between;
-	align-items: start;
-	flex-flow: row wrap;
-}
-
-.searchbar__container__title {
-	font-size: 18px;
-	text-align: center;
-}
-
-.searchbar__container__title span {
-	display: block;
+	padding-bottom: 50px;	
 }
 
 .searchbar__container__form input {
@@ -44,7 +21,32 @@
 	border-radius: 8px;
 	font-size: 16px;
 	padding: 15px 16px;
+	margin-bottom: 15px;
 	width: 323px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.searchbar__container__form{
+	display: flex;
+	justify-content: center;
+}
+
+.searchbar__container__form form {
+	text-align: center;
+}
+
+.searchDivide {
+	display: none;
+}
+
+.searchbar__container__title span {
+	display: block;
+}
+
+.searchbar__container__title {
+	font-size: 20px;
+	text-align: center;
 }
 
 .searchbar__container__form button {
@@ -56,42 +58,88 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	padding-top: 10px;
-	margin-left: 10px;
 	width: 45px;
 }
-
-/* Holds inputs and button */
-.searchbar__form__container {
-	background-color: #ffffff;
-	border-top-left-radius: 8px;
-	border-bottom-left-radius: 8px;
-	border-top-right-radius: 8px;
-	border-bottom-right-radius: 8px;
-	width: 655px;
-}
-.searchDivide {
-	color: rgb(226, 222, 222);
-	font-size: 30px;
-}
-
-#searchLocation {
-	border-top-right-radius: 8px;
-	border-bottom-right-radius: 8px;
-}
 /**************************************************/
 /**************************************************/
-/* Tablet Syles */
+/* Tablet Styles */
 /**************************************************/
 /**************************************************/
 
 @media(min-width: 768px){
-	.searchbar__container__title {
-		font-size: 25px;
-		text-align: center;
-	}
-	
 	.searchbar__container__title span {
 		display: inline;
 	}
+
+	.searchDivide {
+		display: inline;
+		color: rgb(226, 222, 222);
+		font-size: 30px;
+	}
+
+	.searchbar__form__container {
+		background-color: #ffffff;
+		border-top-left-radius: 8px;
+		border-bottom-left-radius: 8px;
+		border-top-right-radius: 8px;
+		border-bottom-right-radius: 8px;
+	}
+
+	.searchbar__container__form form {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.searchbar__container__form input {
+		border: none;
+		border-radius: 8px;
+		font-size: 16px;
+		margin: 0;
+		width: 270px;
+	}
+
+	.searchbar__container__form button {
+		width: 45px;
+		margin-left: 10px;
+	}
 }
-	
+
+/**************************************************/
+/**************************************************/
+/* Desktop Styles */
+/**************************************************/
+/**************************************************/
+@media(min-width: 1200px){
+	.searchbar__wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		padding-bottom: 50px;	
+	}
+
+	.searchbar__container__form {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
+
+	.searchbar__container__title {
+		font-size: 18px;
+		text-align: center;
+	}
+
+	.searchbar__container__form input {
+		border: none;
+		border-radius: 8px;
+		font-size: 16px;
+		padding: 15px 16px;
+		width: 323px;
+	}
+
+	/* Holds inputs and button */
+	.searchbar__form__container {
+		width: 655px;
+	}
+}
