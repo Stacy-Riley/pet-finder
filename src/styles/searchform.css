@@ -1,6 +1,10 @@
 @charset "UTF-8";
 /* CSS Document */
-
+/**************************************************/
+/**************************************************/
+/* Mobile Styles */
+/**************************************************/
+/**************************************************/
 *,
 *::before,
 *::after {
@@ -21,11 +25,19 @@
 }
 
 .form-input-container select {
-	/* width: 300px; */
-	height: 30px;
-	/* padding-left: 8px; */
-	margin-top: 5px;
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	padding: 12px 8px;
 	margin-bottom: 15px;
+	width: 323px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-input-container label {
+	padding: 5px 10px;
+	font-size: 18px;
 }
 
 .form-title-container h2 {
@@ -57,3 +69,50 @@
 	width: 322px;
 	
 }
+/**************************************************/
+/**************************************************/
+/* Tablet Styles */
+/**************************************************/
+/**************************************************/
+	@media(min-width: 768px){
+		.form-input-container {
+			margin: 0;
+		}
+
+		.form-input-container select {
+			width: 450px;
+			margin: 0;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.form-input-container label {
+			margin: 0;
+			margin-left: 50px;
+		}
+	}
+
+/**************************************************/
+/**************************************************/
+/* Desktop Styles */
+/**************************************************/
+/**************************************************/
+	@media(min-width: 1200px){
+		.form-input-container {
+			margin: 0;
+		}
+
+		.form-input-container select {
+			width: 475px;
+			margin: 0;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		
+		.form-input-container label {
+			margin: 0;
+			margin-top: 10px;
+			margin-bottom: 5px;
+			margin-left: 35px;
+		}
+	}
