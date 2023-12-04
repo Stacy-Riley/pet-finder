@@ -18,6 +18,7 @@ function PetCard ({ data }) {
             // const srcValue = `./img/${pet.image}`;
             return (
               <div className='pet-card' key={pet.id}>
+                <figure>
                 <img 
                 //images displaying with use of require()
                   src={require(`../assets/images/${pet.image}`)}
@@ -25,6 +26,8 @@ function PetCard ({ data }) {
                   width="200"
                   height="150"   
                 />
+                </figure>
+                
                 <h2>{pet.name}</h2>
                 <p>Breed: {pet.breed}</p>
                 <p>Gender: {pet.gender}</p>
