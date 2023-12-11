@@ -1,37 +1,44 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 import '../styles/navigation.css';
 
 function Navigation(){
-	const[isMenuOpen, setIsMenuOpen] = useState(false);
+	const[menuOpen, setMenuOpen] = useState(false);
 
 	const toggleMenu = () => {
-		setIsMenuOpen(!isMenuOpen);
+		setMenuOpen(!menuOpen);
 	};
 
 	const closeMenu = () => {
 		console.log("is closed - clicked")
-		setIsMenuOpen(false);
+		setMenuOpen(false);
 	}
 
 	return (
-		// <div>
-			<nav>
+		<div className='nav-wrapper overlay' 
+		// onClick allows user to click anywhere in this div to close the modal
+		onClick={toggleMenu}>
+			<nav className='nav-container'>
 				<div className="menu-icon" onClick={toggleMenu}>
         			{/* Hamburger Icon */}
-					<div className={`bar ${isMenuOpen ? 'open' : ''}`}></div>
-					<div className={`bar ${isMenuOpen ? 'open' : ''}`}></div>
-					<div className={`bar ${isMenuOpen ? 'open' : ''}`}></div>
+					{/* If menuOpen is true, the className of 'open' is added */}
+					<div className={`bar ${menuOpen ? 'open' : ''}`}></div>
+					<div className={`bar ${menuOpen ? 'open' : ''}`}></div>
+					<div className={`bar ${menuOpen ? 'open' : ''}`}></div>
       			</div>
-				<ul className={`menu ${isMenuOpen ? 'open' : ''}`}>
+				{/* If className of 'open' was added, these list items will be displayed */}
+				<ul className={`menu ${menuOpen ? 'open' : ''}`}>
 					<li><a href="#" onClick={closeMenu}>Adopt</a></li>
-					<li><a href="#" onClick={closeMenu}>Dogs &nbsp; Puppies</a></li>
+					<li>
+						<Link to="/searchdog">Dogs &nbsp; Puppies</Link>
+					</li>
 					<li><a href="#" onClick={closeMenu}>Cats &nbsp; Kittens</a></li>
 					<li><a href="#" onClick={closeMenu}>Other Pets</a></li>
 					<li><a href="#" onClick={closeMenu}>Sign Up</a></li>
 					<li><a href="#" onClick={closeMenu}>Log In</a></li>	
 				</ul>
     		</nav>
-		// </div>
+		 </div>
 	)
 }
 
