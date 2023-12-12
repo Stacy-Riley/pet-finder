@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Navigation from './Navigation.js';
 
 function Header() {
@@ -8,7 +9,7 @@ function Header() {
 			<div className='header__wrapper'>
 				<div className='header__container'>
 					<div className='header__container__logo'>
-						<p>petfinder</p>	
+						<Link to="/" style={{ textDecoration: 'none' }}><p>petfinder</p></Link>
 					</div>
 					<div className='header__container__favIcon'>
 						<span className="material-symbols-rounded">favorite</span>
