@@ -9,7 +9,9 @@ function Header() {
 			<div className='header__wrapper'>
 				<div className='header__container'>
 					<div className='header__container__logo'>
-						<Link to="/" style={{ textDecoration: 'none' }}><p>petfinder</p></Link>
+						<Link to="/" style={{ textDecoration: 'none' }}>
+							<p>petfinder</p>
+						</Link>
 					</div>
 					<div className='header__container__favIcon'>
 						<span className="material-symbols-rounded">favorite</span>
