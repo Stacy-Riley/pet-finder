@@ -17,17 +17,10 @@ function App() {
         </div>
         <Routes>
             <Route path="/" element= {<Home />} />
-            <Route path="searchdog" element= { <SearchDog /> } />
-            <Route
-              path="/"
-              element={
-                <ImageCardDisplay>
-                  <Route path="search/dogs" element={<SearchDog />} />
-                  <Route path="search/cats" element={<SearchCat />} />
-                  <Route path="search/other" element={<SearchOther />} />
-                </ImageCardDisplay>
-              }
-            />
+            <Route path="search/dog" element= { <SearchDog /> } />
+            <Route path="search/cat" element= { <SearchCat /> } />
+            <Route path="search/other" element= { <SearchOther /> } />
+            
         </Routes>
 
       </div>
