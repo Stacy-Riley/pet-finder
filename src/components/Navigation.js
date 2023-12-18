@@ -30,7 +30,7 @@ function Navigation(){
 				<ul className={`menu ${menuOpen ? 'open' : ''}`}>
 					<li><a href="#" onClick={closeMenu}>Adopt</a></li>
 					<li>
-						<Link to="/searchdog">Dogs &nbsp; Puppies</Link>
+						<Link to="search/dog">Dogs &nbsp; Puppies</Link>
 					</li>
 					<li><a href="#" onClick={closeMenu}>Cats &nbsp; Kittens</a></li>
 					<li><a href="#" onClick={closeMenu}>Other Pets</a></li>
