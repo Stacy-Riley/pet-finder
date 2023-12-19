@@ -24,7 +24,7 @@
 	/* justify-content: center; */ 
 }
 
-.header__container__logo {
+.header__container__logo  {
 	font-family: 'Lobster Two', 'Montserrat', cursive;
 	font-size: 2.5rem;
   margin-left: 30px;
@@ -40,6 +40,11 @@
   .app-wrapper {
     background-color: rgb(230, 233, 242);
     padding-bottom: 50px;
+  }
+  
+  .not-found {
+    text-align: center;
+    margin-top: 200px;
   }
 /* ********************************* */
 /* Search by animal card section */
