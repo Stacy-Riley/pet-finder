@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home.js";
-import Header from './components/Header.js';
+import Header from "./components/Header.js";
 import SearchDog from "./components/SearchDog.js";
 import SearchCat from "./components/SearchCat.js";
 import SearchOther from "./components/SearchOther.js";
