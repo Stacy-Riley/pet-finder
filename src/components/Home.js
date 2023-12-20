@@ -29,12 +29,6 @@ setFilteredPets(filtered);
 setShowPetCard(true);
 }
 
-const toggleSearchBarVisibility = () => {
-setSearchBarVisibility(false);
-//If there were cards displayed in the first searchbar and then an Image card was pressed
-//this will hide the card 
-setShowPetCard(false);
-}
 	return (
 		<>
 			{/* First Searchbar */}
@@ -53,9 +47,7 @@ setShowPetCard(false);
 
 			<div>
 				{/* Section that shows imagecards that when clicked on open form */}
-				<ImageCardDisplay
-					onImageClick={toggleSearchBarVisibility}
-				/>
+				<ImageCardDisplay />
         	</div>
 		</>
 	)
