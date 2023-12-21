@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid'; //library to generate unique keys 
 import '../styles/searchform.css';
+import database from '../assets/data/database.json';
+import PetCard from './PetCard';
 
-
-function SearchDog ( { onClick }){
+function SearchDog (){
 	const [showDogCard, setShowDogCard] = useState(false);
 	const [userInteracted, setUserInteracted] = useState(false);
-
+	const [filteredDogs, setFilteredDogs] = useState(database);
 	//Collects the state of all the form elements
 	const [filters, setFilters] = useState({
 		age: '',
@@ -18,18 +19,28 @@ function SearchDog ( { onClick }){
 	
 	
 	
-	//Triggered when the search button is clicked 
-	//passes filters to the 'onClick' function provided as a prop to App.js:
-	const handleDogSearch = () => {
-		setUserInteracted(true);
-		onClick(filters);
-		  
+	//Triggered when the search button in the form is clicked 
+	//Passes "filters" state to the 'onClick' function provided as a prop
+	const handleDogSearch = ({onClick}) => {
+		// console.log("Filters", filters)
+		
+// 	//This takes in the "filters" state the user selected in the searchdog.js form
+// 	//filters the keys of the filters object and if == '' or key, returns true and displays
+		const filteredResults = database.filter((pet) => {
+		return Object.keys(filters).every(key=>{
+		  return filters[key]===""|| pet[key]===filters[key]
+		})
+		
+	 });
+	 setFilteredDogs(filteredResults);
+	 setShowDogCard(true);
+	 setUserInteracted(true);
 	}
 
 		useEffect(() => {
 			if(userInteracted){
 				// handleDogSearch()
-				onClick(filters);
+				// onClick(filters);
 			}
 			
 		}, [filters, userInteracted])
@@ -59,9 +70,6 @@ const handleClose = (valueToRemove) => {
 
 	return (
 			<div className='search-wrapper'>
-				{/* <div className='results-container'>
-							<p>Hello there!</p>
-				</div> */}
 				<div className='search-container'>
 					<form>
 						<div className='form-title-container'>
@@ -151,6 +159,7 @@ const handleClose = (valueToRemove) => {
 						{/* Map over the user selected inputs and display on the screen */}
 						
 					</form>
+
 					<div className='#'>
 						{Object.entries(filters).map(([key, value]) => (
 							
@@ -166,10 +175,12 @@ const handleClose = (valueToRemove) => {
 							</div>) : null
 						))}
 					</div>
+					<div>
+						{showDogCard && <PetCard data={filteredDogs}/>}
+					</div>
 				</div>
-				
 			</div>
-	)
-}
+		)
+	}
 
 export default SearchDog;
