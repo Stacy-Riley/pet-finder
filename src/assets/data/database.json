@@ -82,5 +82,33 @@
 	"image": "samplesnake.jpeg",
 	"size": "small",
 	"id": "6"
+},
+{
+	"name":"Louis",
+	"type": "cat",
+	"breed": "bengal",
+	"gender": "male",
+	"age": "kitten",
+	"available": "true",
+	"location": "Quito",
+	"good with": ["children", "cats"],
+	"notes": "Louis is a shy kitten but warms up quickly. He loves to play with string.",
+	"image": "bengal_louis.jpeg",
+	"size": "small",
+	"id": "7"
+},
+{
+	"name":"Agatha",
+	"type": "cat",
+	"breed": "calico",
+	"gender": "female",
+	"age": "young",
+	"available": "true",
+	"location": "Cuenca",
+	"good with": ["children", "cats"],
+	"notes": "This lively girl will melt your heart.  She is very friendly and talkative. Agatha makes friends wherever she goes!",
+	"image": "calico_agatha.jpeg",
+	"size": "medium",
+	"id": "8"
 }
 ]
