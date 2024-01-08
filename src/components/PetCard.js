@@ -19,21 +19,21 @@ function PetCard ({ data }) {
             return (
               <div className='pet-card' key={pet.id}>
                 <figure>
-                <img 
-                //images displaying with use of require()
-                  src={require(`../assets/images/${pet.image}`)}
-                  alt={pet.name}
-                  width="200"
-                  height="150"   
-                />
-                </figure>
+                  <img 
+                  //images displaying with use of require()
+                    src={require(`../assets/images/${pet.image}`)}
+                    alt={pet.name}  
+                  />
+                  </figure>
+                  <div className='pet-card-data-div'>
+                    <h2>{pet.name}</h2>
+                    <p>Breed: {pet.breed}</p>
+                    <p>Gender: {pet.gender}</p>
+                    <p>Age: {pet.age}</p>
+                    <p>Location: {pet.location}</p>
+                    <p>Notes: <br/>{pet.notes}</p>
+                  </div>
                 
-                <h2>{pet.name}</h2>
-                <p>Breed: {pet.breed}</p>
-                <p>Gender: {pet.gender}</p>
-                <p>Age: {pet.age}</p>
-                <p>Location: {pet.location}</p>
-                <p>Notes: <br/>{pet.notes}</p>
               </div>
             )
           })}      
