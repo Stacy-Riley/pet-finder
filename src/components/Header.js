@@ -9,7 +9,7 @@ function Header() {
 			<div className='header__wrapper'>
 				<div className='header__container'>
 					<div className='header__container__logo'>
-						<Link to="/" style={{ textDecoration: 'none' }}>
+						<Link to="/pet-finder" style={{ textDecoration: 'none' }}>
 							<p>petfinder</p>
 						</Link>
 					</div>
