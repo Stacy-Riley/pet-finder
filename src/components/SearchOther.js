@@ -8,6 +8,8 @@ function SearchOther (){
 	const [showOtherCard, setShowOtherCard] = useState(false);
 	const [userInteracted, setUserInteracted] = useState(false);
 	const [filteredOther, setFilteredOther] = useState(database);
+	const [showNotAvailCard, setShowNotAvailCard] = useState(false);
+
 	//Collects the state of all the form elements
 	const [filters, setFilters] = useState({
 		age: '',
@@ -24,13 +26,21 @@ function SearchOther (){
 		
 // 	//This takes in the "filters" state the user selected in the SearthOther.js form
 // 	//filters the keys of the filters object and if == '' or key, returns true and displays
-		const filteredResults = database.filter((pet) => {
+		const filteredResults = database.filter((pet) => {	
 		return Object.keys(filters).every(key=>{
 		  return filters[key]===""|| pet[key]===filters[key]
 		})
-		
+	
 	 });
 	 setFilteredOther(filteredResults);
+
+	 //If the array is empty, it changes the state to true so the message can appear
+	 if(filteredResults.length === 0){
+		setShowNotAvailCard(true);
+	 } 
+	 else {
+		setShowNotAvailCard(false);
+	 }
 	 setShowOtherCard(true);
 	 setUserInteracted(true);
 	}
@@ -54,6 +64,11 @@ const handleClose = (valueToRemove) => {
 	  ])
 	);
 	setFilters(updatedSearchTerms);
+
+	//This removes the "not available" message
+	if(setShowNotAvailCard){
+		setShowNotAvailCard(false);
+	}
 	console.log("Updated Search Terms:", updatedSearchTerms);
   };
 
@@ -88,7 +103,7 @@ const handleClose = (valueToRemove) => {
 					>
 						<option value="">Any</option>
 						<option value="bunny">Bunny</option>
-						<option value="gerbil">Gerbil</option>
+						<option value="guinea pig">Guinea Pig</option>
 						<option value="hamster">Hamster</option>
 						<option value="snake">Snake</option>
 					</select>
@@ -168,6 +183,10 @@ const handleClose = (valueToRemove) => {
 						</div>) : null
 					))}
 				</div>
+				{showNotAvailCard && 
+					<div>
+						<p>Sorry, nobody is available right now. Check back soon!</p>
+					</div>}
 				<div>
 					{showOtherCard && <PetCard data={filteredOther}/>}
 				</div>

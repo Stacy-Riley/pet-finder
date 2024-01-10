@@ -8,6 +8,7 @@ function SearchDog (){
 	const [showDogCard, setShowDogCard] = useState(false);
 	const [userInteracted, setUserInteracted] = useState(false);
 	const [filteredDogs, setFilteredDogs] = useState(database);
+	const [showNotAvailCard, setShowNotAvailCard] = useState(false);
 	//Collects the state of all the form elements
 	const [filters, setFilters] = useState({
 		age: '',
@@ -33,6 +34,13 @@ function SearchDog (){
 		
 	 });
 	 setFilteredDogs(filteredResults);
+
+	 //If the array is empty, it changes the state to true so the message can appear
+	 if(filteredResults.length === 0){
+		setShowNotAvailCard(true);
+	 } else {
+		setShowNotAvailCard(false);
+	 }
 	 setShowDogCard(true);
 	 setUserInteracted(true);
 	}
@@ -57,6 +65,10 @@ const handleClose = (valueToRemove) => {
 	  ])
 	);
   
+	//This removes the "not available" message
+	if(setShowNotAvailCard){
+		setShowNotAvailCard(false);
+	}
 	
 	setFilters(updatedSearchTerms);
 	console.log("Updated Search Terms:", updatedSearchTerms);
@@ -175,6 +187,10 @@ const handleClose = (valueToRemove) => {
 							</div>) : null
 						))}
 					</div>
+					{showNotAvailCard && 
+					<div>
+						<p>Sorry, nobody is available right now. Check back soon!</p>
+					</div>}
 					<div>
 						{showDogCard && <PetCard data={filteredDogs}/>}
 					</div>
