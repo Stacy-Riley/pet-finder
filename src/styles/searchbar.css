@@ -16,6 +16,12 @@
 	padding-bottom: 50px;	
 }
 
+.searchbar__container__title h1 {
+	margin: 0;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
 .searchbar__container__form input {
 	border: none;
 	border-radius: 8px;
