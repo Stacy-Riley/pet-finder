@@ -31,23 +31,32 @@ setShowPetCard(true);
 
 	return (
 		<>
-			{/* First Searchbar */}
-			<div>
-				<SearchBar 
-					onSearch={handleSearch}
-					isVisible={isSearchBarVisible}
-				/>
+			<div className='homepage__wrapper_1'>
+				{/* First Searchbar */}
+				<div>
+					<SearchBar 
+						onSearch={handleSearch}
+						isVisible={isSearchBarVisible}
+					/>
+				</div>
+
+				<div>
+					{/* Conditionally render the PetCard Component */}
+					{showPetCard && <PetCard data={filteredPets} />}
+				</div>
+				
+
+				<div>
+					{/* Section that shows imagecards that when clicked on open form */}
+					<ImageCardDisplay />
+				</div>
 			</div>
 
-			<div>
-				{/* Conditionally render the PetCard Component */}
-				{showPetCard && <PetCard data={filteredPets} />}
-			</div>
-            
+			<div className='homepage__wrapper_2'>
+				<h2>Planning to Adopt a Pet?</h2>
+				<div>
 
-			<div>
-				{/* Section that shows imagecards that when clicked on open form */}
-				<ImageCardDisplay />
+				</div>
         	</div>
 		</>
 	)

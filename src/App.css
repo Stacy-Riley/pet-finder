@@ -12,6 +12,7 @@
 .header {
 	height: 80px;
 	width: 100%;
+  background-color: rgb(230, 233, 242);
 }
 
 .header__wrapper {
@@ -37,14 +38,14 @@
   margin-right: 30px;
   }
 
-  .app-wrapper {
-    background-color: rgb(230, 233, 242);
-    padding-bottom: 50px;
-  }
-  
   .not-found {
     text-align: center;
     margin-top: 200px;
+  }
+
+  .homepage__wrapper_1 {
+    background-color: rgb(230, 233, 242);
+    padding-bottom: 50px;
   }
 /* ********************************* */
 /* Search by animal card section */
