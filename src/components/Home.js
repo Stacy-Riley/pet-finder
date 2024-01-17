@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar.js';
 import ImageCardDisplay from '../components/ImageCardDisplay.js';
 import '../App.css';
 import '../styles/cardLink.css';
+import imagesData from "../assets/data/cardData.js";
 
 function Home(){
 //Create state variables 
@@ -53,16 +54,47 @@ setShowPetCard(true);
 			</div>
 
 			<div className='homepage__wrapper_2'>
-				<h2>Planning to Adopt a Pet?</h2>
 				<div>
+					<h2>Planning to Adopt a Pet?</h2>
+					<div className='homepage__wrapper_2_container_adoption_info'>
+						<div className='homepage__wrapper_2_adoption_checklist'>
+						{/* By adding .default after the require statement, I'm explicitly accessing the URL of the image from the object returned by require.  */}
+							<figure>
+								<img src={require(`../assets/icons/paw-2-svgrepo-com.svg`).default} alt="paw icon"/>
+							</figure>
 
+							<h2>Checklist For New Adopters</h2>
+							<p>Make the adoption process as smooth as possible.</p>
+
+							<button>Learn More</button>
+						</div>
+
+						<div className='homepage__wrapper_2_adoption_faq'>
+							<figure>
+								<img src={require(`../assets/icons/paw-2-svgrepo-com.svg`).default} alt="paw icon"/>
+							</figure>
+
+							<h2>Pet Adoption FAQs</h2>
+							<p>Get answers to all the questions you haven't thought of for your adoption.</p>
+							
+							<button>Learn More</button>
+						</div>
+					</div>
+				</div>
+        	</div>
+
+			<div className='homepage__wrapper_3'>
+				<div className='homepage__wrapper_3_container_adoption_articles'>
+					{/* <ArticlesDog /> */}
+					{/* <ArticlesCat /> */}
 				</div>
         	</div>
 		</>
 	)
 }
 
-
+//Next:
+// begin creating the AdoptionChecklist and AdoptionFAQ components
 
 
 
