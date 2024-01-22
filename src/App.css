@@ -60,3 +60,49 @@
   align-items: center;
   flex-flow: row wrap;
 }
+
+/* ********************************* */
+/* Adoption Info section */
+/* ********************************* */
+.homepage__wrapper_2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+}
+
+/* Keeps the div container centered as the viewport size changes */
+.homepage__wrapper_2 div {
+  margin-left: auto;
+  margin-right: auto; 
+}
+
+.homepage__wrapper_2 h2 {
+  font-size: 32px;
+  margin: 0;
+	padding-top: 50px;
+	padding-bottom: 50px;
+  text-align: center;
+}
+
+.homepage__wrapper_2_container_adoption_info {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row wrap;
+}
+
+.homepage__wrapper_2_adoption_checklist,
+.homepage__wrapper_2_adoption_faq {
+  text-align: center;
+  width: 350px;
+}
+
+.homepage__wrapper_2_adoption_checklist h2,
+.homepage__wrapper_2_adoption_faq h2 {
+  text-transform: uppercase;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* ********************************* */
+/* Adoption Article section */
+/* ********************************* */
