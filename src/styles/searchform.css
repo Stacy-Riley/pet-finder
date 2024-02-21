@@ -12,10 +12,12 @@
 }
 
 .search-wrapper {
+	background-color: rgb(230, 233, 242);
 	display: flex;
 	justify-content: center;
-
+	padding-bottom: 50px;
 }
+
 .form-input-container {
 	display: flex;
 	justify-content: center;
