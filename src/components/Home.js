@@ -96,7 +96,7 @@ setShowPetCard(true);
 }
 
 //Next:
-// begin creating the AdoptionChecklist and AdoptionFAQ components
+// Create the AdoptionFAQ components
 
 
 
