@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import database from '../assets/data/database.json';
 import PetCard from '../components/PetCard.js';
 import SearchBar from '../components/SearchBar.js';
@@ -57,18 +58,19 @@ setShowPetCard(true);
 				<div>
 					<h2>Planning to Adopt a Pet?</h2>
 					<div className='homepage__wrapper_2_container_adoption_info'>
-						<div className='homepage__wrapper_2_adoption_checklist'>
-						{/* By adding .default after the require statement, I'm explicitly accessing the URL of the image from the object returned by require.  */}
-							<figure>
-								<img src={require(`../assets/icons/paw-2-svgrepo-com.svg`).default} alt="paw icon"/>
-							</figure>
+						<Link to="/adoption/checklist">
+							<div className='homepage__wrapper_2_adoption_checklist'>
+							{/* By adding .default after the require statement, I'm explicitly accessing the URL of the image from the object returned by require.  */}
+								<figure>
+									<img src={require(`../assets/site_images/wade-austin-ellis-FtuJIuBbUhI-unsplash.jpg`).default} alt="paw icon"/>
+								</figure>
 
-							<h2>Checklist For New Adopters</h2>
-							<p>Make the adoption process as smooth as possible.</p>
+								<h2>Checklist For New Adopters</h2>
+								<p>Make the adoption process as smooth as possible.</p>
 
-							<button>Learn More</button>
-						</div>
-
+								<button>Learn More</button>
+							</div>
+						</Link>
 						<div className='homepage__wrapper_2_adoption_faq'>
 							<figure>
 								<img src={require(`../assets/icons/paw-2-svgrepo-com.svg`).default} alt="paw icon"/>
