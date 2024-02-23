@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import '../App.css';
 
 function AdoptionChecklist(){
@@ -9,7 +8,7 @@ function AdoptionChecklist(){
 			<div>
 				<div className="adoption-checklist-container-1">
 					<figure>
-					<img src={require(`../assets/icons/paw-2-svgrepo-com.svg`).default} alt="paw icon"/>
+					<img src={require(`../assets/site_images/wade-austin-ellis-FtuJIuBbUhI-unsplash.jpg`)} alt="happy woman hugging dog"/>
 					</figure>
 					<p>
 					Well done on your pet adoption! You are starting a fantastic and fulfilling relationship. 
